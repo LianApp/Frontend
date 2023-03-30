@@ -1,20 +1,14 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Grid } from '@mui/material';
-import Sidebar from '../widgets/Sidebar';
-import Lessons from '../pages/Lessons';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from '../pages/MainPage';
+import LessonsPage from '../pages/LessonsPage';
 
 function App() {
   return (
-    <Grid container maxHeight="100vh" width="100vw" height="100vh">
-      <Grid item lg={2} md={4} xs={6}>
-        <Sidebar />
-      </Grid>
-
-      <Grid item lg={10} md={8} xs={8}>
-        <Lessons />
-      </Grid>
-    </Grid>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/lessons" element={<LessonsPage />} />
+    </Routes>
   );
 }
 
