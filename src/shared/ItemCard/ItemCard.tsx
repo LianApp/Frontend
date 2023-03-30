@@ -7,7 +7,7 @@ function ItemCard() {
       sx={{
         boxShadow: '0px 4px 4px 4px rgba(74, 0, 233, 0.25)',
         borderRadius: '20px',
-        width: '100%'
+        width: '100%',
       }}
       height="25%"
       py={2}
