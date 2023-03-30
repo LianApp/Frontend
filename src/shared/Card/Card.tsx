@@ -27,6 +27,7 @@ function CardBlock({ variant }: CardProps) {
     <Box
       width="450px"
       height="260px"
+      maxHeight="360px"
       sx={{
         boxShadow: '0px 4px 4px 4px rgba(74, 0, 233, 0.25)',
         borderRadius: '20px',

@@ -1,13 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import {
-  Box, Grid, IconButton, Stack, Typography,
+  Box, Divider, Grid, IconButton, InputBase, Stack, Typography,
 } from '@mui/material';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import Sidebar from '../widgets/Sidebar';
 import CardBlock from '../shared/Card/Card';
 import LessonCard from '../shared/LessonCard/LessonCard';
+import ItemCard from '../shared/ItemCard/ItemCard';
 
 function App() {
   return (
@@ -44,7 +45,57 @@ function App() {
             </Stack>
 
           </Stack>
-          <Typography fontSize="36px">Мои уроки</Typography>
+
+          <Box mt={4} width="100%" maxHeight="600px" height="400px">
+            <Typography fontSize="36px">Мои уроки</Typography>
+            <InputBase
+              sx={{
+                boxShadow: '1px 4px 4px 2px rgba(131, 131, 131, 0.25)',
+                borderRadius: '50px',
+                paddingLeft: '20px',
+                outline: '0',
+                width: '20%',
+                mt: '20px',
+              }}
+              placeholder="Поиск..."
+            />
+
+            <Stack direction="row" spacing={8} height="100%" mt={6}>
+
+              <Stack direction="column" width="20%">
+                <Typography fontSize="20px">Компьютерные сети</Typography>
+                  <Stack height="100%" spacing={4} mt={2}>
+                    <ItemCard/>
+                    <ItemCard/>
+                    <ItemCard/>
+                  </Stack>
+              </Stack>
+
+              <Divider sx={{ backgroundColor: 'black' }} orientation="vertical" flexItem />
+
+              <Stack direction="column" width="20%">
+                <Typography fontSize="20px">Алгоритмизация</Typography>
+                <Stack height="100%" spacing={4} mt={2}>
+                    <ItemCard/>
+                    <ItemCard/>
+                    <ItemCard/>
+                </Stack>
+              </Stack>
+
+              <Divider sx={{ backgroundColor: 'black' }} orientation="vertical" flexItem />
+              
+              <Stack direction="column" width="20%">
+                <Typography fontSize="20px">Операционные системы</Typography>
+                <Stack height="100%" spacing={4} mt={2}>
+                    <ItemCard/>
+                    <ItemCard/>
+                    <ItemCard/>
+                </Stack>
+              </Stack>
+
+            </Stack>
+
+          </Box>
 
         </Box>
       </Grid>
