@@ -3,6 +3,7 @@ import { ArrowForward } from '@mui/icons-material';
 import {
   Box, Stack, Typography, IconButton,
 } from '@mui/material';
+import LessonItemCard from './LessonItemCard/LessonItemCard';
 
 interface LessonItemProps {
   color: string
@@ -30,38 +31,9 @@ function LessonItem({ color, title }: LessonItemProps) {
       </Stack>
 
       <Stack direction="row" spacing={6} mt={4} height="100%">
-        <Box
-          width="30%"
-          height="60%"
-          sx={{
-            border: '1px solid black',
-            backgroundColor: 'white',
-            boxShadow: '8px 10px 0px -1px #000000',
-            borderRadius: '20px',
-          }}
-        />
-
-        <Box
-          width="30%"
-          height="60%"
-          sx={{
-            border: '1px solid black',
-            backgroundColor: 'white',
-            boxShadow: '8px 10px 0px -1px #000000',
-            borderRadius: '20px',
-          }}
-        />
-
-        <Box
-          width="30%"
-          height="60%"
-          sx={{
-            border: '1px solid black',
-            backgroundColor: 'white',
-            boxShadow: '8px 10px 0px -1px #000000',
-            borderRadius: '20px',
-          }}
-        />
+        <LessonItemCard progress={95} />
+        <LessonItemCard progress={70} />
+        <LessonItemCard progress={50} />
       </Stack>
     </Box>
   );
