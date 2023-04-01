@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import Sidebar from '../widgets/Sidebar';
-import Lessons from './Lessons';
+import Lessons from '../widgets/Lessons';
 
 function LessonsPage() {
   return (

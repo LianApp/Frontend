@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import Sidebar from '../widgets/Sidebar';
-import Main from './Main';
+import Main from '../widgets/Main';
 
 function MainPage() {
   return (
