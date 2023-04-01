@@ -12,7 +12,7 @@ function Lesson() {
         <Typography fontSize="46px">Урок - Алгоритмизация</Typography>
         <Breadcrumbs>
           <Typography fontSize="22px" color="text.primary">Презентация</Typography>
-          <Typography fontSize="22px" color="text.primary">Текст</Typography>
+          <Typography fontSize="22px" color="text.primary">Лекция</Typography>
           <Typography fontSize="22px" color="text.primary">Тест</Typography>
         </Breadcrumbs>
       </Stack>
