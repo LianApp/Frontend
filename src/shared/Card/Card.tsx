@@ -9,7 +9,8 @@ interface CardProps {
     variant: 'sm' | 'lg' | 'md'
 }
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+// eslint-disable-next-line max-len
+export const BorderLinearProgress = styled(LinearProgress)(({ theme, colorBg }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
@@ -17,7 +18,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? '#9D70FF' : '#308fe8',
+    backgroundColor: theme.palette.mode === 'light' ? colorBg : '#308fe8',
   },
 }));
 
@@ -54,7 +55,7 @@ function CardBlock({ variant }: CardProps) {
           </Typography>
         </Box>
         <Box mt={2}>
-          <BorderLinearProgress variant="determinate" value={50} />
+          <BorderLinearProgress variant="determinate" value={50} colorBg="#9D70FF" />
         </Box>
       </Box>
     </Box>
