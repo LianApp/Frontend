@@ -1,22 +1,16 @@
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import {
-  Box, Breadcrumbs, Button, IconButton, Stack, Typography,
+  Box, Button, IconButton, Stack, Typography,
 } from '@mui/material';
 import React from 'react';
 import withSidebar from '../../widgets/hoc/withSidebar';
+import HeaderLesson from '../../shared/HeaderLesson/HeaderLesson';
 
 function Presentation() {
   return (
     <Box mt={4} ml={5} width="100%" height="90%">
 
-      <Stack direction="row" justifyContent="space-between" width="90%" alignItems="center">
-        <Typography fontSize="46px">Урок - Алгоритмизация</Typography>
-        <Breadcrumbs>
-          <Typography fontSize="22px" color="text.primary">Презентация</Typography>
-          <Typography fontSize="22px" color="text.primary">Лекция</Typography>
-          <Typography fontSize="22px" color="text.primary">Тест</Typography>
-        </Breadcrumbs>
-      </Stack>
+      <HeaderLesson title="Алгоритмизация" />
 
       <Stack direction="column" width="90%" height="70%" mt={6} alignItems="center">
         <Box
