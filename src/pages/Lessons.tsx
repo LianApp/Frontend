@@ -3,6 +3,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import LessonItem from '../shared/LessonItem/LessonItem';
+import withSidebar from '../widgets/hoc/withSidebar';
 
 function Lessons() {
   return (
@@ -32,4 +33,4 @@ function Lessons() {
   );
 }
 
-export default Lessons;
+export default withSidebar(Lessons);

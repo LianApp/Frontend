@@ -3,6 +3,7 @@ import {
   Box, Breadcrumbs, Button, IconButton, Stack, Typography,
 } from '@mui/material';
 import React from 'react';
+import withSidebar from '../widgets/hoc/withSidebar';
 
 function Lesson() {
   return (
@@ -56,4 +57,4 @@ function Lesson() {
   );
 }
 
-export default Lesson;
+export default withSidebar(Lesson);

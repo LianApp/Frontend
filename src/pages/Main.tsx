@@ -6,6 +6,7 @@ import {
 import CardBlock from '../shared/Card/Card';
 import ItemCard from '../shared/ItemCard/ItemCard';
 import LessonCard from '../shared/LessonCard/LessonCard';
+import withSidebar from '../widgets/hoc/withSidebar';
 
 function Main() {
   return (
@@ -92,4 +93,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default withSidebar(Main);
