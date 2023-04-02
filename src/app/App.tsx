@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Main from '../pages/Main';
-import Lesson from '../pages/Lesson';
+import Lesson from '../pages/lesson/Presentation';
 import Lessons from '../pages/Lessons';
 
 function App() {

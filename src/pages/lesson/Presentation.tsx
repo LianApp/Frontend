@@ -3,9 +3,9 @@ import {
   Box, Breadcrumbs, Button, IconButton, Stack, Typography,
 } from '@mui/material';
 import React from 'react';
-import withSidebar from '../widgets/hoc/withSidebar';
+import withSidebar from '../../widgets/hoc/withSidebar';
 
-function Lesson() {
+function Presentation() {
   return (
     <Box mt={4} ml={5} width="100%" height="90%">
 
@@ -57,4 +57,4 @@ function Lesson() {
   );
 }
 
-export default withSidebar(Lesson);
+export default withSidebar(Presentation);
