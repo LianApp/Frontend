@@ -6,6 +6,7 @@ import Main from '../pages/Main';
 import Presentation from '../pages/lesson/Presentation';
 import Lessons from '../pages/Lessons';
 import Lecture from '../pages/lesson/Lecture';
+import Test from '../pages/lesson/Test';
 
 function App() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function App() {
         <Route path="/lessons" element={<Lessons />} />
         <Route path="/lessons/1/pres" element={<Presentation />} />
         <Route path="/lessons/1/lecture" element={<Lecture />} />
+        <Route path="/lessons/1/test" element={<Test />} />
       </Routes>
     </AnimatePresence>
   );
