@@ -3,7 +3,7 @@ import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import {
   Box, Typography, Stack, IconButton, InputBase, Divider,
 } from '@mui/material';
-import CardBlock from '../shared/Card/Card';
+import ActivityCard from '../shared/activity-card/index';
 import ItemCard from '../shared/ItemCard/ItemCard';
 import LessonCard from '../shared/LessonCard/LessonCard';
 import withSidebar from '../widgets/hoc/withSidebar';
@@ -28,7 +28,7 @@ function Main() {
         </Stack>
 
         <Stack direction="row" mt={3}>
-          <CardBlock variant="lg" />
+          <ActivityCard />
           <Stack direction="row" spacing={3} ml={8}>
             <LessonCard title="Компьютерные сети" progress={40} />
             <LessonCard title="Алгоритмизация" progress={70} />
