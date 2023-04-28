@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BorderLinearProgress } from '../../Card/Card';
+import { BorderLinearProgress } from '../../activity-card/lib/helper';
 
 function LessonItemCard({ progress }: { progress: number }) {
   const navigate = useNavigate();
