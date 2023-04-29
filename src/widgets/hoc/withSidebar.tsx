@@ -5,12 +5,12 @@ import Sidebar from '../Sidebar';
 function withSidebar(Component: React.ComponentType) {
   function WithSidebarComponent() {
     return (
-      <Grid container maxHeight="100vh" width="100vw" height="100vh">
-        <Grid item lg={2} md={2} xs={0}>
+      <Grid container maxHeight="100vh" sx={{ height: '100vh' }}>
+        <Grid item xs={12} md={2} lg={2}>
           <Sidebar />
         </Grid>
 
-        <Grid item lg={10} md={6} xs={12}>
+        <Grid item xs={12} md={10} lg={10}>
           <Component />
         </Grid>
       </Grid>
