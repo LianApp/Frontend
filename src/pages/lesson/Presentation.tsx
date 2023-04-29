@@ -1,4 +1,4 @@
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
+import { ArrowForward } from '@mui/icons-material';
 import {
   Box, Button, IconButton, Stack, Typography,
 } from '@mui/material';
@@ -7,7 +7,10 @@ import withSidebar from '../../widgets/hoc/withSidebar';
 import HeaderLesson from '../../shared/HeaderLesson/HeaderLesson';
 import AnimatedPage from '../../shared/AnimatedPage/AnimatedPage';
 
+// Google viewer http://docs.google.com/viewer?url=${linkToPPTFile}&embedded=true
+
 function Presentation() {
+  const linkToPPTFile = 'https://scholar.harvard.edu/files/torman_personal/files/samplepptx.pptx';
   return (
     <AnimatedPage>
       <Box mt={4} ml={5} width="100%" height="100%">
@@ -15,22 +18,13 @@ function Presentation() {
         <HeaderLesson title="Алгоритмизация" />
 
         <Stack direction="column" width="90%" height="70%" mt={6} alignItems="center">
-          <Box
-            sx={{
-              border: '1px solid black',
-            }}
+          <iframe
+            src={`https://view.officeapps.live.com/op/embed.aspx?src=${linkToPPTFile}`}
             width="100%"
-            height="100%"
-            p={36}
+            height="600px"
+            frameBorder="0"
+            title="slides"
           />
-          <Box mt={4}>
-            <IconButton>
-              <ArrowBack />
-            </IconButton>
-            <IconButton>
-              <ArrowForward />
-            </IconButton>
-          </Box>
         </Stack>
 
         <Stack alignItems="flex-end" width="90%" mt={6}>
