@@ -1,7 +1,6 @@
 import axios from 'axios';
-import useAuth from '../store/useAuth';
+import useAuth from 'entities/user/api/lib/useAuth';
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
 const token = useAuth((state) => state.accesToken);
 
 const instance = axios.create({
