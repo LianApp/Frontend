@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import Main from '../pages/Main';
-import Presentation from '../pages/lesson/Presentation';
-import Lessons from '../pages/Lessons';
-import Lecture from '../pages/lesson/Lecture';
-import Test from '../pages/lesson/Test';
+import Main from 'pages/Main';
+import Presentation from 'pages/lesson/Presentation';
+import Lessons from 'pages/Lessons';
+import Lecture from 'pages/lesson/Lecture';
+import Test from 'pages/lesson/Test';
 
 function App() {
   const location = useLocation();
