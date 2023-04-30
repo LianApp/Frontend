@@ -4,7 +4,7 @@ import {
   Box, Typography, Stack, IconButton, InputBase, Divider,
 } from '@mui/material';
 import ActivityCard from 'widgets/activity-card/ui/ActivityCard';
-import ItemCard from 'shared/ItemCard/ItemCard';
+import ItemCard from 'shared/ui/ItemCard/ItemCard';
 import { ProgressCard } from 'widgets/progress-card/ui/ProgressCard';
 import withSidebar from 'shared/hoc/withSidebar';
 

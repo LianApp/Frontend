@@ -5,7 +5,7 @@ import React from 'react';
 import { AnimatedPage } from 'features/AnimatedPage/ui/AnimatedPage';
 import HeaderLesson from 'widgets/lesson-header/HeaderLesson';
 import withSidebar from 'shared/hoc/withSidebar';
-import AnswerCard from 'shared/AnswerCard/AnswerCard';
+import AnswerCard from 'shared/ui/AnswerCard/AnswerCard';
 
 const answers = ['O(n)', 'O(n*n)', 'O(iphone)', 'O(n * log(n))'];
 
