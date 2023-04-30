@@ -4,4 +4,13 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
+  resolve: {
+    alias: {
+      widgets: '/src/widgets',
+      shared: '/src/shared',
+      pages: '/src/pages',
+      entities: '/src/entities',
+      features: '/src/features'
+    }
+  }
 });
