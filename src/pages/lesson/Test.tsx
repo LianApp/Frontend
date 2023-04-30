@@ -2,10 +2,10 @@ import {
   Box, Pagination, Stack, Typography,
 } from '@mui/material';
 import React from 'react';
-import AnimatedPage from '../../shared/AnimatedPage/AnimatedPage';
-import HeaderLesson from '../../shared/HeaderLesson/HeaderLesson';
-import withSidebar from '../../widgets/hoc/withSidebar';
-import AnswerCard from '../../shared/AnswerCard/AnswerCard';
+import { AnimatedPage } from 'features/AnimatedPage/ui/AnimatedPage';
+import HeaderLesson from 'widgets/lesson-header/HeaderLesson';
+import withSidebar from 'shared/hoc/withSidebar';
+import AnswerCard from 'shared/AnswerCard/AnswerCard';
 
 const answers = ['O(n)', 'O(n*n)', 'O(iphone)', 'O(n * log(n))'];
 
@@ -32,7 +32,7 @@ function Test() {
             }}
             mt={4}
           >
-            {answers.map((ans) => <AnswerCard answer={ans} />)}
+            {answers.map((ans) => <AnswerCard key={ans} answer={ans} />)}
           </Box>
           <Box
             sx={{

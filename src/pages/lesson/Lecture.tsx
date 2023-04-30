@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 import React from 'react';
-import HeaderLesson from '../../shared/HeaderLesson/HeaderLesson';
-import withSidebar from '../../widgets/hoc/withSidebar';
-import AnimatedPage from '../../shared/AnimatedPage/AnimatedPage';
+import HeaderLesson from 'widgets/lesson-header/HeaderLesson';
+import withSidebar from 'shared/hoc/withSidebar';
+import { AnimatedPage } from 'features/AnimatedPage/ui/AnimatedPage';
 
 function Lecture() {
   return (

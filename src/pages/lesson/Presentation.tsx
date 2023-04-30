@@ -3,9 +3,9 @@ import {
   Box, Button, IconButton, Stack, Typography,
 } from '@mui/material';
 import React from 'react';
-import withSidebar from '../../widgets/hoc/withSidebar';
-import HeaderLesson from '../../shared/HeaderLesson/HeaderLesson';
-import AnimatedPage from '../../shared/AnimatedPage/AnimatedPage';
+import withSidebar from 'shared/hoc/withSidebar';
+import HeaderLesson from 'widgets/lesson-header/HeaderLesson';
+import { AnimatedPage } from 'features/AnimatedPage/ui/AnimatedPage';
 
 // Google viewer http://docs.google.com/viewer?url=${linkToPPTFile}&embedded=true
 

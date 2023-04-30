@@ -2,8 +2,8 @@ import {
   Box, InputBase, Stack, Typography,
 } from '@mui/material';
 import React from 'react';
-import LessonItem from '../shared/LessonItem/LessonItem';
-import withSidebar from '../widgets/hoc/withSidebar';
+import { LessonList } from 'widgets/lessons-list/ui/LessonList';
+import withSidebar from 'shared/hoc/withSidebar';
 
 function Lessons() {
   return (
@@ -23,10 +23,10 @@ function Lessons() {
         />
       </Stack>
 
-      <Stack width="90%" height="100vh" mt={4} spacing={4}>
-        <LessonItem color="#EDB72B" title="Алгоритмизация" />
-        <LessonItem color="#51DA7F" title="Разработка веб-приложений" />
-        <LessonItem color="#F8CEEE" title="Тестирование" />
+      <Stack width="95%" height="100vh" mt={4} spacing={4}>
+        <LessonList color="#EDB72B" title="Алгоритмизация" />
+        <LessonList color="#51DA7F" title="Разработка веб-приложений" />
+        <LessonList color="#F8CEEE" title="Тестирование" />
       </Stack>
 
     </Box>

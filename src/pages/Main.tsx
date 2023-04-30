@@ -3,10 +3,10 @@ import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import {
   Box, Typography, Stack, IconButton, InputBase, Divider,
 } from '@mui/material';
-import ActivityCard from '../shared/activity-card/index';
-import ItemCard from '../shared/ItemCard/ItemCard';
-import LessonCard from '../shared/LessonCard/LessonCard';
-import withSidebar from '../widgets/hoc/withSidebar';
+import ActivityCard from 'widgets/activity-card/ui/ActivityCard';
+import ItemCard from 'shared/ItemCard/ItemCard';
+import { ProgressCard } from 'widgets/progress-card/ui/ProgressCard';
+import withSidebar from 'shared/hoc/withSidebar';
 
 function Main() {
   return (
@@ -30,9 +30,9 @@ function Main() {
         <Stack direction="row" mt={3}>
           <ActivityCard />
           <Stack direction="row" spacing={3} ml={8}>
-            <LessonCard title="Компьютерные сети" progress={40} />
-            <LessonCard title="Алгоритмизация" progress={70} />
-            <LessonCard title="Операционные системы" progress={60} />
+            <ProgressCard title="Компьютерные сети" progress={40} />
+            <ProgressCard title="Алгоритмизация" progress={70} />
+            <ProgressCard title="Операционные системы" progress={60} />
           </Stack>
         </Stack>
 
