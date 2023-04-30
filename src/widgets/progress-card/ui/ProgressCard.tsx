@@ -6,7 +6,7 @@ interface LessonCardProps {
     progress: number
 }
 
-function LessonCard({ title, progress }: LessonCardProps) {
+export function ProgressCard({ title, progress }: LessonCardProps) {
   return (
     <Box
       width="240px"
@@ -27,5 +27,3 @@ function LessonCard({ title, progress }: LessonCardProps) {
     </Box>
   );
 }
-
-export default LessonCard;

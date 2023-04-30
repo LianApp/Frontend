@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BorderLinearProgress } from '../../activity-card/lib/helper';
+import { BorderLinearProgress } from 'widgets/activity-card/lib/helper';
 
 function LessonItemCard({ progress }: { progress: number }) {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ function LessonItemCard({ progress }: { progress: number }) {
         boxShadow: '8px 10px 0px -1px #000000',
         borderRadius: '20px',
         cursor: 'pointer',
+        overflow: 'hidden',
       }}
       px={2}
       py={2}
@@ -24,8 +25,12 @@ function LessonItemCard({ progress }: { progress: number }) {
       onClick={() => navigate('/lessons/1/pres')}
     >
       <Box>
-        <Typography fontSize="22px" fontWeight="bold">Алгоритмизация</Typography>
-        <Typography fontSize="14px" fontWeight="bold">QuickSort / BubblySort</Typography>
+        <Typography fontSize="22px" fontWeight="bold" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          Алгоритмизация
+        </Typography>
+        <Typography fontSize="14px" fontWeight="bold" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          QuickSort / BubblySort
+        </Typography>
       </Box>
 
       <Box display="flex" alignItems="center">

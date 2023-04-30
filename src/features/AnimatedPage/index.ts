@@ -1,0 +1,1 @@
+export { AnimatedPage } from './ui/AnimatedPage'

@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import Sidebar from '../Sidebar';
+import Sidebar from 'widgets/sidebar/Sidebar';
 
 function withSidebar(Component: React.ComponentType) {
   function WithSidebarComponent() {
