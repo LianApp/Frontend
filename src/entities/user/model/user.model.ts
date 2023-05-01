@@ -1,8 +1,8 @@
-enum Role {
-    TEACHER,
-    STUDENT,
-    ADMIN,
-    ORAGANIZATOR
+export enum Role {
+    TEACHER = 'teacher',
+    STUDENT = 'student',
+    ADMIN = 'admin',
+    ORAGANIZATOR = 'organizator'
 }
 
 export type User = {
