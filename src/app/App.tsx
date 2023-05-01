@@ -6,6 +6,7 @@ import Presentation from 'pages/lesson/Presentation';
 import Lessons from 'pages/Lessons';
 import Lecture from 'pages/lesson/Lecture';
 import Test from 'pages/lesson/Test';
+import Login from 'features/authentication/Login/ui/Login';
 
 function App() {
   const location = useLocation();
@@ -14,6 +15,7 @@ function App() {
       <Routes key={location.pathname} location={location}>
         <Route path="/" element={<Main />} />
         <Route path="/lessons" element={<Lessons />} />
+        <Route path="/login" element={<Login />}/>
         <Route path="/lessons/1/pres" element={<Presentation />} />
         <Route path="/lessons/1/lecture" element={<Lecture />} />
         <Route path="/lessons/1/test" element={<Test />} />
