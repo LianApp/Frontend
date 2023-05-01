@@ -7,11 +7,13 @@ import ActivityCard from 'widgets/activity-card/ui/ActivityCard';
 import ItemCard from 'shared/ui/ItemCard/ItemCard';
 import { ProgressCard } from 'widgets/progress-card/ui/ProgressCard';
 import withSidebar from 'shared/hoc/withSidebar';
+import useAuth from 'entities/user/api/lib/useAuth';
 
 function Main() {
+  const role = useAuth(state => state.role)
   return (
     <Box mt={4} ml={5}>
-      <Typography fontSize="46px">Добро пожаловать, User!</Typography>
+      <Typography fontSize="46px">Добро пожаловать, User!, твоя роль {role}</Typography>
 
       <Stack direction="column" width="100%" mt={6}>
 
