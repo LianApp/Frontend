@@ -5,7 +5,7 @@ import {
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../../../public/icons/logo.svg';
+import Logo from 'shared/ui/Logo/Logo';
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Sidebar() {
 
   const menuItems = (
     <Box>
-      <Box component="img" alt="logo" src={logo} width={130} height={100} mb={2} />
+      <Logo />
       <List>
         <ListItem onClick={() => navigate('/')}>
           <Typography sx={{ cursor: 'pointer' }} fontSize="22px">Главная</Typography>

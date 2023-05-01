@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Container, Typography, Box, Grid, Link, TextField, CssBaseline, Button } from '@mui/material';
-import logo from '../../../../../public/icons/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import Toast from 'shared/ui/Toast/Toast';
+import Logo from 'shared/ui/Logo/Logo';
 
 const user = {
     email: 'feat@feat',
@@ -34,7 +34,7 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <Box component="img" alt="logo" src={logo} width={130} height={100} mb={2} />
+          <Logo />
           <Typography component="h1" variant="h5">
             Войти
           </Typography>
