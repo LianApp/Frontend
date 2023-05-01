@@ -3,20 +3,26 @@ import { Container, Typography, Box, Grid, Link, TextField, CssBaseline, Button 
 import { useNavigate } from 'react-router-dom';
 import Toast from 'shared/ui/Toast/Toast';
 import Logo from 'shared/ui/Logo/Logo';
+import useAuth from 'entities/user/api/lib/useAuth';
+import { Role } from 'entities/user/model/user.model';
 
 const user = {
     email: 'feat@feat',
-    password: '424242'
+    password: '424242',
+    role: Role.STUDENT
 }
 
 export default function Login() {
   const navigate = useNavigate()
   const [open, setOpen] = React.useState(false)
+  const setRole = useAuth(state => state.setUserRole)
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const password = data.get('password')
     if(password === user.password) {
+        setRole(user.role)
         navigate('/');
     } else {
         setOpen(true);
