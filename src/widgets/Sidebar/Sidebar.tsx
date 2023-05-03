@@ -1,17 +1,23 @@
 import {
   List, ListItem, Stack, Typography, Box, Avatar,
-  IconButton, Drawer, Divider,
+  IconButton, Drawer, Divider, Tooltip,
 } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from 'shared/ui/Logo/Logo';
 import useAuth from 'entities/user/api/lib/useAuth';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Sidebar() {
   const navigate = useNavigate();
   const name = useAuth(state => state.userName)
   const [open, setOpen] = useState(false);
+
+  const logout = () => {
+    localStorage.clear()
+    navigate("/login")
+  }
 
   // eslint-disable-next-line no-unused-vars
   const toggleDrawer = (isOpen: boolean | ((prev: boolean) => boolean)) => {
@@ -50,6 +56,13 @@ function Sidebar() {
       <Box display="flex" alignItems="center">
         <Avatar alt="User User">{name[0][0]}</Avatar>
         <Typography ml={2}>{name}</Typography>
+        <Box ml={2}>
+          <Tooltip title="Выйти">
+            <IconButton onClick={logout}>
+              <LogoutIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
       </Box>
     </Box>
   );
