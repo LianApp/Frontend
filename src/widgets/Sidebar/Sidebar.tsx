@@ -76,7 +76,7 @@ function Sidebar() {
       <Box display={{ xs: 'none', md: 'block' }}>
         {menuItems}
       </Box>       
-    </Stack>
+    </Stack>  
   );
 }
 
