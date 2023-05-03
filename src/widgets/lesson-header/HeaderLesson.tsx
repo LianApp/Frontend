@@ -1,12 +1,11 @@
 import { Stack, Typography, Breadcrumbs } from '@mui/material';
+import useLesson from 'entities/lesson/api/useLesson';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface HeaderLessonProps {
-    title: string
-}
 
-function HeaderLesson({ title }: HeaderLessonProps) {
+function HeaderLesson() {
+  const title = useLesson(state => state.title)
   return (
     <Stack direction="row" justifyContent="space-between" width="90%" alignItems="center">
       <Typography fontSize="46px">
