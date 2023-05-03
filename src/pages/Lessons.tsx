@@ -2,10 +2,16 @@ import {
   Box, InputBase, Stack, Typography,
 } from '@mui/material';
 import React from 'react';
-import { LessonList } from 'widgets/lessons-list/ui/LessonList';
+import { LessonList, LessonListProps } from 'widgets/lessons-list/ui/LessonList';
 import withSidebar from 'shared/hoc/withSidebar';
+import axios from 'shared/api/axiosConfig'
+import { useQuery } from 'react-query';
 
-function Lessons() {
+function Lessons() {  
+  const blessed = useQuery('blessed', async () => {
+    return await axios.get('/student/courses')
+  })
+  
   return (
     <Box mt={4} ml={5}>
       <Stack direction="row" justifyContent="space-between" width="90%">
@@ -24,9 +30,7 @@ function Lessons() {
       </Stack>
 
       <Stack width="95%" height="100vh" mt={4} spacing={4}>
-        <LessonList color="#EDB72B" title="Алгоритмизация" />
-        <LessonList color="#51DA7F" title="Разработка веб-приложений" />
-        <LessonList color="#F8CEEE" title="Тестирование" />
+        {blessed.data?.data.map((course: LessonListProps) => <LessonList key={course.id} color="#EDB72B" title={course.title} lessons={course.lessons} />)}
       </Stack>
 
     </Box>
