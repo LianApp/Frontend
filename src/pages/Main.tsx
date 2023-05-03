@@ -29,9 +29,9 @@ function Main() {
           </Box>
         </Stack>
 
-        <Stack direction="row" mt={3}>
+        <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }} spacing={2}>
           <ActivityCard />
-          <Stack direction="row" spacing={3} ml={8}>
+          <Stack direction="row" spacing={3}>
             <ProgressCard title="Компьютерные сети" progress={40} />
             <ProgressCard title="Алгоритмизация" progress={70} />
             <ProgressCard title="Операционные системы" progress={60} />
