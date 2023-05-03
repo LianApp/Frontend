@@ -10,12 +10,12 @@ import { AnimatedPage } from 'features/AnimatedPage/ui/AnimatedPage';
 // Google viewer http://docs.google.com/viewer?url=${linkToPPTFile}&embedded=true
 
 function Presentation() {
-  const linkToPPTFile = 'https://scholar.harvard.edu/files/torman_personal/files/samplepptx.pptx';
+  const linkToPPTFile = 'https://scholar.harvard.edu/files/torman_personal/files/samplepptx.pptx';  
   return (
-    <AnimatedPage>
+    <AnimatedPage>  
       <Box mt={4} ml={5} width="100%" height="100%">
 
-        <HeaderLesson title="Алгоритмизация" />
+        <HeaderLesson />
 
         <Stack direction="column" width="90%" height="70%" mt={6} alignItems="center">
           <iframe
