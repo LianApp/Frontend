@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import Sidebar from 'widgets/sidebar/Sidebar';
+import Sidebar from 'widgets/Sidebar/Sidebar';
 
 function withSidebar(Component: React.ComponentType) {
   function WithSidebarComponent() {
@@ -15,7 +15,7 @@ function withSidebar(Component: React.ComponentType) {
         </Grid>
       </Grid>
     );
-  }
+  } 
 
   return WithSidebarComponent;
 }

@@ -1,14 +1,18 @@
 import axios from 'axios';
-import useAuth from 'entities/user/api/lib/useAuth';
-
-const token = useAuth((state) => state.accesToken);
 
 const instance = axios.create({
-  baseURL: 'localhost:3000',
+  baseURL: 'http://localhost:3000/api',
   responseType: 'json',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
 });
+
+instance.interceptors.request.use(
+  config => {
+    config.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`
+    return config
+  },
+  error => {
+      return Promise.reject(error);
+  }
+)
 
 export default instance;
