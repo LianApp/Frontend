@@ -13,11 +13,10 @@ function Test() {
   return (
     <AnimatedPage>
       <Box mt={4} ml={5} width="100%" height="100vh">
-        <HeaderLesson title="Алгоритмизация" />
+        <HeaderLesson/>
 
         <Stack direction="row" mt={8} width="80%" justifyContent="space-between">
           <Typography fontSize="30px">Тест по быстрой сортировки</Typography>
-
           <Pagination count={8} variant="outlined" color="primary" />
         </Stack>
 
