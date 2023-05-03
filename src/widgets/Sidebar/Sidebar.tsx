@@ -6,9 +6,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from 'shared/ui/Logo/Logo';
+import useAuth from 'entities/user/api/lib/useAuth';
 
 function Sidebar() {
   const navigate = useNavigate();
+  const name = useAuth(state => state.userName)
   const [open, setOpen] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
@@ -46,8 +48,8 @@ function Sidebar() {
         </ListItem>
       </List>
       <Box display="flex" alignItems="center">
-        <Avatar alt="User User">U</Avatar>
-        <Typography ml={2}>User User</Typography>
+        <Avatar alt="User User">{name[0][0]}</Avatar>
+        <Typography ml={2}>{name}</Typography>
       </Box>
     </Box>
   );
@@ -73,7 +75,7 @@ function Sidebar() {
       </Box>
       <Box display={{ xs: 'none', md: 'block' }}>
         {menuItems}
-      </Box>
+      </Box>       
     </Stack>
   );
 }
