@@ -23,7 +23,14 @@ export default function Login() {
     const password = data.get('password')
     if(password === user.password) {
         setRole(user.role)
-        navigate('/');
+        switch(user.role) {
+          case 'teacher':
+            navigate('/teacher');
+            break;
+          case 'student':
+            navigate('/');
+            break;
+        }
     } else {
         setOpen(true);
     }
