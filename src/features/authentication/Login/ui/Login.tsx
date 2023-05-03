@@ -4,36 +4,44 @@ import { useNavigate } from 'react-router-dom';
 import Toast from 'shared/ui/Toast/Toast';
 import Logo from 'shared/ui/Logo/Logo';
 import useAuth from 'entities/user/api/lib/useAuth';
-import { Role } from 'entities/user/model/user.model';
-
-const user = {
-    email: 'feat@feat',
-    password: '424242',
-    role: Role.STUDENT
-}
+import { useMutation } from 'react-query';
+import instance from 'shared/api/axiosConfig';
 
 export default function Login() {
-  const navigate = useNavigate()
+  const navigate = useNavigate()    
   const [open, setOpen] = React.useState(false)
   const setRole = useAuth(state => state.setUserRole)
+  const setUserName = useAuth(state => state.setUserName)
+  const setGroupId = useAuth(state => state.setGroupId)
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const password = data.get('password')
-    if(password === user.password) {
-        setRole(user.role)
-        switch(user.role) {
-          case 'teacher':
-            navigate('/teacher');
-            break;
-          case 'student':
-            navigate('/');
-            break;
-        }
-    } else {
-        setOpen(true);
-    }
+  const mut = useMutation(newLogin => {
+    return instance.post('/login', newLogin )
+  })
+  
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); 
+    const form = new FormData(event.currentTarget);
+    const email = form.get('email')?.toString()
+    const password = form.get('password')?.toString()
+    const res = await mut.mutateAsync({ email, password } as never as void)
+    if(res.data) {     
+      localStorage.setItem('accessToken', res.data.accessToken)
+      const me = instance.get('/me')    
+      const {name, role, group_id } = (await me).data  
+      setGroupId(group_id)
+      setUserName(name)   
+      setRole(role) 
+      switch(role) {
+        case 'TEACHER':
+          navigate('/teacher');
+          break;
+        case 'STUDENT':
+          navigate('/');
+          break;
+      }    
+    } else {        
+      setOpen(true)
+    }  
   };
 
   return (
@@ -89,7 +97,7 @@ export default function Login() {
             </Grid>
           </Box>
         </Box>
-        <Toast open={open} setOpen={setOpen} msg='Пароли не совпадают' variant='error' />
+        <Toast open={open} setOpen={setOpen} msg='err' variant='error' />
       </Container>
   );
-}
+} 
