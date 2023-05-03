@@ -10,10 +10,10 @@ import withSidebar from 'shared/hoc/withSidebar';
 import useAuth from 'entities/user/api/lib/useAuth';
 
 function Main() {
-  const role = useAuth(state => state.role)
+  const userName = useAuth(state => state.userName)
   return (
     <Box mt={4} ml={5}>
-      <Typography fontSize="46px">Добро пожаловать, User!, твоя роль {role}</Typography>
+      <Typography fontSize="46px">Добро пожаловать, {userName}!</Typography>
 
       <Stack direction="column" width="100%" mt={6}>
 
