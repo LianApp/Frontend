@@ -11,7 +11,7 @@ function Lessons() {
   const blessed = useQuery('blessed', async () => {
     return await axios.get('/student/courses')
   })
-  
+    
   return (
     <Box mt={4} ml={5}>
       <Stack direction="row" justifyContent="space-between" width="90%">
