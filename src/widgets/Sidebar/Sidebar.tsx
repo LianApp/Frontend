@@ -12,7 +12,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 function Sidebar() {
   const navigate = useNavigate();
   const name = useAuth(state => state.userName)
+  const role = useAuth(state => state.role)
   const [open, setOpen] = useState(false);
+
+  const roleNavigate = role === "STUDENT" ? "/lessons" : "/add-lesson"
+  const lessonForRole = role === "STUDENT" ? "Уроки" : "Добавить урок"
+  const homeNavigate = role === "STUDENT" ? "/" : "/teacher"
 
   const logout = () => {
     localStorage.clear()
@@ -28,15 +33,15 @@ function Sidebar() {
     <Box>
       <Logo />
       <List>
-        <ListItem onClick={() => navigate('/')}>
+        <ListItem onClick={() => navigate(homeNavigate)}>
           <Typography sx={{ cursor: 'pointer' }} fontSize="22px">Главная</Typography>
         </ListItem>
         <Divider />
         <ListItem>
           <List>
             <Typography fontSize="22px">Основное</Typography>
-            <ListItem onClick={() => navigate('/lessons')}>
-              <Typography sx={{ cursor: 'pointer' }} fontSize="18px">Уроки</Typography>
+            <ListItem onClick={() => navigate(roleNavigate)}>
+              <Typography sx={{ cursor: 'pointer' }} fontSize="18px">{lessonForRole}</Typography>
             </ListItem>
             <ListItem>
               <Typography fontSize="18px">Тесты</Typography>
