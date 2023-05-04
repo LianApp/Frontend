@@ -1,20 +1,24 @@
 import { Box, Button, Container, FormControl, FormGroup, FormLabel, Grid, InputBase, TextField, Typography } from "@mui/material";
 import useCourse from "entities/course/api/useCourse";
-import React from "react";
+import React, { useState } from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import axios from "shared/api/axiosConfig";
 import withSidebar from "shared/hoc/withSidebar";
+import Toast from "shared/ui/Toast/Toast";
 
 function AddLessonPage() {   
+    const navigate = useNavigate()
     const courseTitle = useCourse(state => state.title)
     const id = useCourse(state => state.id)
-
+    const [open, setOpen] = useState(false)
     const addLeson = useMutation(newLesson => {
       return axios.post(`/course/${id}/lessons`, newLesson, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`, 
         }
-      })
+      })    
     })  
 
     const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +27,13 @@ function AddLessonPage() {
       console.log(data.get("lecture"));
       console.log(data.get("presentation"));
       console.log(data.get("name"));      
-      const res = await addLeson.mutateAsync(data as never as void)
+      const res = await addLeson.mutateAsync( { 
+        title: data.get("name"),
+        presentation: data.get("presentation"),
+        lecture: data.get("lecture")
+      } as never as void)
+      if(res.data) setOpen(true)
+      navigate("/teacher/course/lessons")
       console.log(res);      
     }
 
@@ -81,6 +91,7 @@ function AddLessonPage() {
           </Grid>
         </form>
       </Box>
+      <Toast open={open} setOpen={setOpen} msg="Урок добавлен!" variant={"success"}  />
     </Container>
     )
 }
