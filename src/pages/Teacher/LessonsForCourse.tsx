@@ -17,12 +17,12 @@ function LessonsForCourse() {
                 <Typography fontSize="32px">Мои уроки по курсу {title}</Typography>
                 <Button variant='contained' onClick={() => navigate('/add-lesson')}>Добавить урок</Button>
             </Stack>
-            <Stack mt={4}>
+            <Stack mt={4} direction='row' flexWrap='nowrap' spacing={2}>
                 {lessons.map((les: Lesson) => 
                     <LessonItemCard key={les.id} title={les.title} lecture_url={''} presentation_url={''}/>)
                 }
             </Stack>    
-        </Box>
+        </Box>  
     )
 }
 
