@@ -1,19 +1,18 @@
 import React from 'react';
-import { Box, Typography, CircularProgress, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme, Icon } from '@mui/material';
 
 interface LessonCardProps {
   title: string;
-  progress: number;
+  icon: string
 }
 
-export function ProgressCard({ title, progress }: LessonCardProps) {
+export function ProgressCard({ title, icon }: LessonCardProps) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const boxWidth = isSmallScreen ? '100%' : '240px';
   const boxHeight = isSmallScreen ? 'auto' : '260px';
   const fontSize = isSmallScreen ? '16px' : '20px';
-  const progressSize = isSmallScreen ? 80 : 120;
 
   return (
     <Box
@@ -31,12 +30,9 @@ export function ProgressCard({ title, progress }: LessonCardProps) {
       alignItems="center"
     >
       <Typography fontSize={fontSize}>{title}</Typography>
-      <CircularProgress
-        size={progressSize}
-        sx={{ color: '#9D70FF' }}
-        variant="determinate"
-        value={progress}
-      />
+      <Icon sx={{fontSize: "82px"}}>
+        {icon}
+      </Icon>
     </Box>
   );
 }

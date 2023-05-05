@@ -1,11 +1,14 @@
 import { create } from 'zustand';
 import { CourseType } from '../model/course.model';
+import { persist } from 'zustand/middleware';
 
 interface IUseCourse extends CourseType {
     setCourse:(course: CourseType) => void
 }
 
-const useCourse = create<IUseCourse>((set) => ({
+//eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
+const useCourse = create<IUseCourse>(persist((set) => ({
     id: 0,
     title: '',
     lessons: [],
@@ -18,6 +21,9 @@ const useCourse = create<IUseCourse>((set) => ({
         lessons: course.lessons,
         icon: course.icon
     }))
+}), {
+    name: 'course',
+    version: 1
 }))
 
 export default useCourse;

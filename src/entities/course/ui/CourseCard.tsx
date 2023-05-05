@@ -31,7 +31,7 @@ function CourseCard(course: CourseType) {
         }             
         >
             <Typography fontSize={22}>{course.title}</Typography> 
-            <Icon>
+            <Icon sx={{fontSize: "64px"}}>
                 {course.icon}
             </Icon>
         </Box>

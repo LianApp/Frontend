@@ -9,9 +9,10 @@ import { useQuery } from 'react-query';
 
 function Lessons() {  
   const blessed = useQuery('blessed', async () => {
-    return await axios.get('/student/courses')
+    return await axios.get('/students/courses')
   })
-    
+  console.log(blessed.data?.data);
+  
   return (
     <Box mt={4} ml={5}>
       <Stack direction="row" justifyContent="space-between" width="90%">
@@ -29,8 +30,10 @@ function Lessons() {
         />
       </Stack>
 
-      <Stack width="95%" height="100vh" mt={4} spacing={4}>
-        {blessed.data?.data.map((course: LessonListProps) => <LessonList key={course.id} color="#EDB72B" title={course.title} lessons={course.lessons} />)}
+      <Stack width="95%" height="100vh" mt={4} spacing={2}>
+        {blessed.data?.data.map((course: LessonListProps) => 
+          <LessonList key={course.id} icon={course.icon} color="#EDB72B" title={course.title} lessons={course.lessons} />
+        )}
       </Stack>
 
     </Box>

@@ -40,7 +40,6 @@ function LessonItemCard({ title, lecture_url, presentation_url }: Lesson) {
         <Typography fontSize="22px" fontWeight="bold" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {title}
         </Typography>
-
       </Box>
     </Box>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowForward } from '@mui/icons-material';
 import {
-  Box, Stack, Typography, IconButton,
+  Box, Stack, Typography, IconButton, Icon,
 } from '@mui/material';
 import LessonItemCard from 'entities/lesson/ui/LessonItemCard';
 
@@ -17,10 +17,11 @@ export interface LessonListProps {
   id?: number
   color: string;
   title: string;
+  icon: string
   lessons: Lesson[]
 }
 
-export function LessonList({ color, title, lessons }: LessonListProps) {
+export function LessonList({ color, title, lessons, icon }: LessonListProps) {
   return (
     <Box
       width="100%"
@@ -40,14 +41,19 @@ export function LessonList({ color, title, lessons }: LessonListProps) {
         alignItems={['center', 'flex-start']}
         width="100%"
       >
-        <Typography fontSize={['24px', '34px']}>{title}</Typography>
+        <Stack direction='row' alignItems='center'>
+          <Typography fontSize={['24px', '34px']}>{title}</Typography>
+          <Icon sx={{ml: '10px', fontSize: '42px'}}>
+            {icon}
+          </Icon>
+        </Stack>
         <IconButton>
           <ArrowForward />
         </IconButton>
       </Stack>
 
-      <Stack direction={['column', 'row']} spacing={4} mt={[2, 4]} height={['auto', '100%']}>
-        {lessons.map(lesson => <LessonItemCard key={lesson.id} progress={78} title={lesson.title} lecture_url={''} presentation_url={''}/>)}
+      <Stack direction={['column', 'row']} gap={4} mt={[2, 4]} height={['auto', '100%']}>
+        {lessons.map(lesson => <LessonItemCard key={lesson.id} title={lesson.title} lecture_url={''} presentation_url={''}/>)}
       </Stack>
     </Box>
   );  

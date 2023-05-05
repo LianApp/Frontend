@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import {
   Box, Typography, Stack, IconButton, InputBase, Divider,
@@ -8,9 +8,16 @@ import ItemCard from 'shared/ui/ItemCard/ItemCard';
 import { ProgressCard } from 'widgets/progress-card/ui/ProgressCard';
 import withSidebar from 'shared/hoc/withSidebar';
 import useAuth from 'entities/user/api/lib/useAuth';
+import axios from 'shared/api/axiosConfig'
+import { useQuery } from 'react-query';
+import { CourseType } from 'entities/course/model/course.model';
 
 function Main() {
   const userName = useAuth(state => state.userName)
+  const courses = useQuery('courses', async () => {
+    return await axios.get('/students/courses')
+  })
+
   return (
     <Box mt={4} ml={5}>
       <Typography fontSize="46px">Добро пожаловать, {userName}!</Typography>
@@ -29,12 +36,10 @@ function Main() {
           </Box>
         </Stack>
 
-        <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }} spacing={2}>
+        <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }} spacing={4}>
           <ActivityCard />
           <Stack direction="row" spacing={3}>
-            <ProgressCard title="Компьютерные сети" progress={40} />
-            <ProgressCard title="Алгоритмизация" progress={70} />
-            <ProgressCard title="Операционные системы" progress={60} />
+            {courses.data?.data.map((c: CourseType) => <ProgressCard key={c.id} title={c.title}  icon={c.icon}/>)}            
           </Stack>
         </Stack>
 

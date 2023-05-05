@@ -32,8 +32,7 @@ function AddLessonPage() {
         presentation: data.get("presentation"),
         lecture: data.get("lecture")
       } as never as void)
-      if(res.data) setOpen(true)
-      navigate("/teacher/course/lessons")
+      setOpen(true)  
       console.log(res);      
     }
 
