@@ -10,7 +10,7 @@ function withSidebar(Component: React.ComponentType) {
           <Sidebar />
         </Grid>
 
-        <Grid item xs={12} md={10} lg={10}>
+        <Grid item xs={12} md={8} lg={9}>
           <Component />
         </Grid>
       </Grid>

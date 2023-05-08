@@ -12,9 +12,8 @@ function CourseCard(course: CourseType) {
         width="20%"
         height="60%"
         sx={{
-            border: '1px solid black',
             backgroundColor: 'white',
-            boxShadow: '8px 10px 0px -1px #000000',
+            boxShadow: '0px 4px 4px 4px rgba(74, 0, 233, 0.25)',
             borderRadius: '20px',
             cursor: 'pointer',
             overflow: 'hidden',

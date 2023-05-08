@@ -16,8 +16,7 @@ function LessonItemCard({ title, lecture_url, presentation_url }: Lesson) {
 
   return (
     <Box
-      width="20%"
-      height="60%"
+      height="30%"
       sx={{
         border: '1px solid black',
         backgroundColor: 'white',
@@ -28,16 +27,13 @@ function LessonItemCard({ title, lecture_url, presentation_url }: Lesson) {
       }}
       px={2}
       py={2}
-      display="flex"
-      flexDirection="column"
-      justifyContent="space-between"
       onClick={() => {
         navigate('/lessons/1/pres');
         setLesson(lesson);
       }}
     >
       <Box>
-        <Typography fontSize="22px" fontWeight="bold" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <Typography fontSize={{xs: "12px", lg: "22px", md: "16px"}} sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {title}
         </Typography>
       </Box>

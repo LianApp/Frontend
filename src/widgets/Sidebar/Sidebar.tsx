@@ -41,10 +41,10 @@ function Sidebar() {
           <List>
             <Typography fontSize="22px">Основное</Typography>
             <ListItem onClick={() => navigate(roleNavigate)}>
-              <Typography sx={{ cursor: 'pointer' }} fontSize="18px">{lessonForRole}</Typography>
+              <Typography sx={{ cursor: 'pointer' }} fontSize="14px">{lessonForRole}</Typography>
             </ListItem>
             <ListItem>
-              <Typography fontSize="18px">Тесты</Typography>
+              <Typography fontSize="14px">Тесты</Typography>
             </ListItem>
           </List>
         </ListItem>
@@ -53,15 +53,15 @@ function Sidebar() {
           <List>
             <Typography fontSize="22px">Помощь</Typography>
             <ListItem>
-              <Typography fontSize="18px">Документация</Typography>
+              <Typography fontSize="14px">Документация</Typography>
             </ListItem>
           </List>
         </ListItem>
       </List>
       <Box display="flex" alignItems="center">
         <Avatar alt="User User">{name[0][0]}</Avatar>
-        <Typography ml={2}>{name}</Typography>
-        <Box ml={2}>
+        <Typography ml={2} fontSize={{md: "12px", xs: "10px"}}>{name}</Typography>
+        <Box >
           <Tooltip title="Выйти">
             <IconButton onClick={logout}>
               <LogoutIcon />
@@ -75,13 +75,13 @@ function Sidebar() {
   return (
     <Stack
       direction="column"
-      borderRight={{ md: 2, xs: 0, lg: 2 }}
-      borderRadius={{ md: 3, xs: 0, lg: 3 }}
+      borderRight={{ md: 1, xs: 0, lg: 1 }} 
       height="100vh"
       position="fixed"
-      py={{ lg: 4, xs: 0 }}
-      px={{ lg: 6, xs: 0 }}
+      py={{ lg: 2, xs: 2 }}
+      px={{ lg: 4, xs: 2 }}
       justifyContent="space-between"
+      width="12%"
     >
       <Box display={{ xs: 'block', md: 'none' }}>
         <IconButton onClick={() => toggleDrawer(true)}>

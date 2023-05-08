@@ -12,6 +12,7 @@ import { Role } from 'entities/user/model/user.model';
 import TeacherPage from 'pages/Teacher/TeacherPage';
 import AddLessonPage from 'pages/Teacher/AddLessonPage';
 import LessonsForCourse from 'pages/Teacher/LessonsForCourse';
+import StudentsList from 'features/StudentsList/StudentsList';
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
           <Route path='/teacher' element={<TeacherPage />} />
           <Route path='/teacher/course/lessons' element={<LessonsForCourse />}/>
           <Route path='/add-lesson' element={<AddLessonPage />}/>
+          <Route path='/students/list' element={<StudentsList />}/>
         </Route>
         <Route path="/login" element={<Login />}/>
       </Routes>
