@@ -30,8 +30,8 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
       py={[1, 3]}
       sx={{
         backgroundColor: color,
-        borderRadius: ['10px', '20px'],
-        boxShadow: '8px 10px 0px -1px #000000',
+        border: '1.5px solid black',
+        borderRadius: ['10px', '20px'],        
         flexDirection: ['column', 'row'],
       }}
     >
@@ -42,7 +42,7 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
         width="100%"
       >
         <Stack direction='row' alignItems='center'>
-          <Typography fontSize={['24px', '34px']}>{title}</Typography>
+          <Typography fontFamily='Montserrat'  fontSize={['24px', '34px']}>{title}</Typography>
           <Icon sx={{ml: '10px', fontSize: '42px'}}>
             {icon}
           </Icon>
@@ -51,8 +51,8 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
           <ArrowForward />
         </IconButton>
       </Stack>
-
-      <Stack direction={['column', 'row']} gap={4} mt={[2, 4]} height={['auto', '100%']}>
+      {/* height={['auto', '100%']} */}
+      <Stack direction={['column', 'row']} gap={4} mt={[2, 4]} width="100%" >
         {lessons.map(lesson => <LessonItemCard key={lesson.id} title={lesson.title} lecture_url={''} presentation_url={''}/>)}
       </Stack>
     </Box>

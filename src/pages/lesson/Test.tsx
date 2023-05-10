@@ -16,7 +16,7 @@ function Test() {
         <HeaderLesson/>
 
         <Stack direction="row" mt={8} width="80%" justifyContent="space-between">
-          <Typography fontSize="30px">Тест по быстрой сортировки</Typography>
+          <Typography fontSize="30px">Тест по быстрой сортировке</Typography>
           <Pagination count={8} variant="outlined" color="primary" />
         </Stack>
 

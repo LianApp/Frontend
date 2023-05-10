@@ -13,6 +13,7 @@ import TeacherPage from 'pages/Teacher/TeacherPage';
 import AddLessonPage from 'pages/Teacher/AddLessonPage';
 import LessonsForCourse from 'pages/Teacher/LessonsForCourse';
 import StudentsList from 'features/StudentsList/StudentsList';
+import AddLessonForm from 'features/AddLessonForm/AddLessonForm';
 
 function App() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function App() {
           <Route path='/teacher/course/lessons' element={<LessonsForCourse />}/>
           <Route path='/add-lesson' element={<AddLessonPage />}/>
           <Route path='/students/list' element={<StudentsList />}/>
+          <Route path='/add-lesson/form' element={<AddLessonForm />}/>
         </Route>
         <Route path="/login" element={<Login />}/>
       </Routes>

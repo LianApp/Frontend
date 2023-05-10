@@ -6,10 +6,12 @@ import React from 'react';
 import withSidebar from 'shared/hoc/withSidebar';
 import HeaderLesson from 'widgets/lesson-header/HeaderLesson';
 import { AnimatedPage } from 'features/AnimatedPage/ui/AnimatedPage';
+import useLesson from 'entities/lesson/api/useLesson';
 
 // Google viewer http://docs.google.com/viewer?url=${linkToPPTFile}&embedded=true
 
 function Presentation() {
+  const url = useLesson(state => state.presentation_url)
   const linkToPPTFile = 'https://scholar.harvard.edu/files/torman_personal/files/samplepptx.pptx';  
   return (
     <AnimatedPage>  
@@ -19,7 +21,7 @@ function Presentation() {
 
         <Stack direction="column" width="90%" height="70%" mt={6} alignItems="center">
           <iframe
-            src={`https://view.officeapps.live.com/op/embed.aspx?src=${linkToPPTFile}`}
+            src={`https://view.officeapps.live.com/op/embed.aspx?src=${url}`}
             width="100%"
             height="600px"
             frameBorder="0"

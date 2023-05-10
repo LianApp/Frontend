@@ -12,6 +12,7 @@ import axios from 'shared/api/axiosConfig'
 import { useQuery } from 'react-query';
 import { CourseType } from 'entities/course/model/course.model';
 import { useNavigate } from 'react-router';
+import Slider from 'react-slick';
 
 function Main() {
   const navigate = useNavigate()
@@ -22,39 +23,61 @@ function Main() {
 
   return (
     <Box mt={4} ml={5} width="100vw" height="100vh">
-      <Typography fontSize="46px">Добро пожаловать, {userName}!</Typography>
+      <Typography fontFamily='Montserrat' fontSize="46px">Добро пожаловать, {userName}!</Typography>
 
       <Stack direction='column' mt={4} width="100%" maxHeight="100vh" height="45%" justifyContent='space-between'>
-        <Typography fontSize="36px">Мои уроки</Typography>
-        <InputBase  
-          sx={{
-            boxShadow: '1px 4px 4px 2px rgba(131, 131, 131, 0.25)',
-            borderRadius: '50px',
-            paddingLeft: '20px',
-            outline: '0',
-            width: '20%',
-            mt: '20px',
-          }}
-          placeholder="Поиск..."
-        />
-
-        <Stack direction="row" spacing={8} height="100%" mt={6}>
-
-          {courses.data?.data.map((course: CourseType) => (
-            <Stack key={course.id} direction="column" width="20%">
-              <Typography fontSize="20px">{course.title}</Typography>
-              <Stack height="100%" spacing={8} mt={2}>
-                {course.lessons.map(lesson => <ItemCard key={lesson.id} {...lesson} /> )}             
-              </Stack>
-            </Stack> 
-          ))}
-          <Divider sx={{ backgroundColor: 'black' }} orientation="vertical" flexItem />
-         
+        <Stack width='70%' direction={{lg: 'row', xs: 'column'}} justifyContent='space-between'>
+          <Typography fontFamily='Montserrat' fontSize="36px">Мои уроки</Typography>
+          <InputBase  
+            sx={{
+              boxShadow: '1px 4px 4px 2px rgba(131, 131, 131, 0.25)',
+              borderRadius: '50px', 
+              paddingLeft: '20px',
+              outline: '0',
+              width: '25%',
+              mt: '20px',              
+            }}
+            placeholder="Поиск..."
+          />
         </Stack>
+        
+
+        <Stack direction="row" spacing={8} height="100%" mt={6}>  
+            {courses.data?.data.map((course: CourseType) => (
+                <Stack key={course.id} direction="column" width="20%">
+                  <Box 
+                    sx={{ 
+                      border: '1px solid black',
+                      borderRadius: '20px', 
+                      cursor: 'pointer',                  
+                      py: 1,
+                      px: 2
+                    }}  
+                    width='auto'
+                    fontFamily='Montserrat'
+                    fontSize="20px">
+                  {course.title}
+                  </Box>
+                  <Stack height="100%" spacing={6} mt={2}>
+                    {course.lessons.slice(0, 3).map(lesson => <ItemCard key={lesson.id} {...lesson} /> )}             
+                  </Stack>
+                </Stack>  
+            ))}  
+        </Stack>
+          {/* <Divider sx={{ backgroundColor: 'black' }} orientation="vertical" flexItem /> */}
 
       </Stack>
-      <Stack justifyContent='center' alignItems='center' width='70%' mt={16}>
-        <Button onClick={() => navigate("/lessons")} variant="contained">Все уроки...</Button>
+      <Stack justifyContent='center' alignItems='center' width='70%'>
+        <Box
+          sx={{ 
+            border: '1px solid black',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            py: 1,
+            px: 2
+          }} 
+          onClick={() => navigate("/lessons")}
+          >Все уроки...</Box>
       </Stack>
     </Box>  
   );

@@ -36,7 +36,7 @@ function GroupCard(group: Group) {
             }
         }                      
         >
-            <Typography fontSize={22}>{group.name}</Typography>             
+            <Typography fontFamily='Montserrat' fontSize={22}>{group.name}</Typography>             
         </Box>
     )
 }

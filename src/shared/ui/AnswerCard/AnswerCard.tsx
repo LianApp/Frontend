@@ -28,6 +28,7 @@ function AnswerCard({ answer }: AnswerCardProps) {
         backgroundColor: color,
       }}
       onClick={onChangeColor}
+      fontFamily='Montserrat'
     >
       {answer}
     </Box>

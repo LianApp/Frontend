@@ -53,7 +53,10 @@ export default function Login() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-          }}
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%'
+          }}          
         >
           <Logo />
           <Typography component="h1" variant="h5">
@@ -87,14 +90,7 @@ export default function Login() {
               sx={{ mt: 3, mb: 2 }}
             >
               Войти
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Забыли пароль?
-                </Link>
-              </Grid>              
-            </Grid>
+            </Button>            
           </Box>
         </Box>
         <Toast open={open} setOpen={setOpen} msg='err' variant='error' />

@@ -15,7 +15,7 @@ function LessonsForCourse() {
         <Box ml={6} width="100%"> 
             <Stack mt={4} justifyContent='space-between' direction='row' width='80%'>
                 <Typography fontSize="32px">Мои уроки по курсу {title}</Typography>
-                <Button variant='contained' onClick={() => navigate('/add-lesson')}>Добавить урок</Button>
+                <Button variant='contained' onClick={() => navigate('/add-lesson/form')}>Добавить урок</Button>
             </Stack>
             <Stack mt={4} direction='row' flexWrap='nowrap' spacing={2} width='70%'>
                 {lessons.map((les: Lesson) => 

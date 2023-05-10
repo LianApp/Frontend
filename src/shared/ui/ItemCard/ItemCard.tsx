@@ -16,10 +16,11 @@ function ItemCard({ title, lecture_url, presentation_url }: Lesson) {
   return (
     <Box
       sx={{
-        boxShadow: '0px 4px 4px 4px rgba(74, 0, 233, 0.25)',
+        border: '2px solid black',
         borderRadius: '20px',
         width: '100%',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        backgroundColor: '#F3C24F'
       }}
       width="10%"
       height="35%"
@@ -30,7 +31,7 @@ function ItemCard({ title, lecture_url, presentation_url }: Lesson) {
         navigate('/lessons/1/pres')
       }}
     >
-      <Typography fontSize="18px">{title}</Typography>
+      <Typography fontFamily='Montserrat' fontSize="18px">{title}</Typography>
     </Box>
   );
 }
