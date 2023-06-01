@@ -43,8 +43,8 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
         width="100%"
       >
         <Stack direction='row' alignItems='center'>
-          <Typography fontFamily='Montserrat'  fontSize={['24px', '34px']}>{title}</Typography>
-          <Icon sx={{ml: '10px', fontSize: '42px'}}>
+          <Typography  data-testid="lesson-title" fontFamily='Montserrat'  fontSize={['24px', '34px']}>{title}</Typography>
+          <Icon data-testid="lesson-icon" sx={{ml: '10px', fontSize: '42px'}}>
             {icon}
           </Icon>
         </Stack>
@@ -54,7 +54,7 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
       </Stack>
       {/* height={['auto', '100%']} */}
       <Stack direction={['column', 'row']} gap={4} mt={[2, 4]} width="100%" >
-        {lessons.map(lesson => <LessonItemCard key={lesson.id} title={lesson.title} lecture_url={''} presentation_url={''}/>)}
+        {lessons.map(lesson => <LessonItemCard key={lesson.id} title={lesson.title} lecture_url={lesson.lecture_url} presentation_url={lesson.presentation_url}/>)}
       </Stack>
     </Box>
   );
