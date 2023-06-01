@@ -21,15 +21,15 @@ function TeacherPage() {
         <Stack width="100%" mt={5}> 
                 <Typography fontSize="32px">Добро пожаловать, {userName}!</Typography>
             <Box mt={4}>
-                <Typography fontSize="32px">Мои группы</Typography>
-                <Stack mt={4}>
+                <Typography data-testid="title-groups" fontSize="32px">Мои группы</Typography>
+                <Stack mt={4} spacing={4}>
                     {groups.data?.data.map((g: Group) =>  
                         <GroupCard key={g.id} id={g.id} name={g.name}/>)   
                     }
                 </Stack>  
             </Box>
             <Box mt={4}>
-                <Typography fontSize="32px">Мои предметы</Typography>
+                <Typography data-testid="title-subjects" fontSize="32px">Мои предметы</Typography>
                 <Stack mt={4}>
                     {courses.data?.data.map((c: CourseType) =>  
                         <CourseCard key={c.id} id={c.id} title={c.title} icon={c.icon} lessons={c.lessons}/>)   

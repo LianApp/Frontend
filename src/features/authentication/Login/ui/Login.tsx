@@ -15,33 +15,39 @@ export default function Login() {
   const setGroupId = useAuth(state => state.setGroupId)
 
   const mut = useMutation(newLogin => {
-    return instance.post('/login', newLogin )
+    return instance.post('/login', newLogin)
   })
+  console.log(mut.isSuccess);
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); 
     const form = new FormData(event.currentTarget);
     const email = form.get('email')?.toString()
     const password = form.get('password')?.toString()
-    const res = await mut.mutateAsync({ email, password } as never as void)
-    if(res.data) {     
-      localStorage.setItem('accessToken', res.data.accessToken)
-      const me = instance.get('/me')    
-      const {name, role, group_id } = (await me).data  
-      setGroupId(group_id)
-      setUserName(name)   
-      setRole(role) 
-      switch(role) {
-        case 'TEACHER':
-          navigate('/teacher');
-          break;
-        case 'STUDENT':
-          navigate('/');
-          break;
-      }    
-    } else {        
+  
+    try {
+      const res = await mut.mutateAsync({ email, password } as never as void)
+  
+      if (res.data) {     
+        localStorage.setItem('accessToken', res.data.accessToken)
+        const me = instance.get('/me')    
+        const {name, role, group_id } = (await me).data  
+        setGroupId(group_id)
+        setUserName(name)   
+        setRole(role) 
+        
+        switch(role) {
+          case 'TEACHER':
+            navigate('/teacher');
+            break;
+          case 'STUDENT':
+            navigate('/');
+            break;
+        }    
+      }
+    } catch (error) {
       setOpen(true)
-    }  
+    }
   };
 
   return (
@@ -93,7 +99,7 @@ export default function Login() {
             </Button>            
           </Box>
         </Box>
-        <Toast open={open} setOpen={setOpen} msg='err' variant='error' />
+        <Toast open={open} setOpen={setOpen} msg={mut?.error?.response?.data?.message} variant='error' />
       </Container>
   );
 } 

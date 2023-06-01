@@ -37,7 +37,7 @@ function AddLessonForm() {
     
     return(
     <Container maxWidth='md' sx={{mt: 4}}>
-        <Typography variant='h4' align='center' gutterBottom>
+        <Typography data-testid="header-title_text" variant='h4' align='center' gutterBottom>
             Создание урока для курса {courseTitle}
         </Typography>
       <Box sx={{ mt: 4 }}>        
@@ -48,16 +48,17 @@ function AddLessonForm() {
                 required
                 fullWidth
                 name="name"
-                id='lesson-title'
+                data-testid='lesson-title'
                 label='Название урока'
               />
             </Grid>
             <Grid item xs={12} lg={6}>
               <FormControl>
-                <FormLabel>Файл лекции</FormLabel>
+                <FormLabel data-testid="title-add-document">Прикрепите документ</FormLabel>
                 <FormGroup>
                   <InputBase
                     type='file'
+                    data-testid="button-add-document"
                     name="lecture"
                     inputProps={{
                       accept: '.docx',
@@ -68,10 +69,11 @@ function AddLessonForm() {
             </Grid>
             <Grid item xs={12} lg={6}>
               <FormControl>
-                <FormLabel>Файл презентации</FormLabel>
+                <FormLabel data-testid="title-add-presentation">Файл презентации</FormLabel>
                 <FormGroup>
                   <InputBase
                     type='file'
+                    data-testid="button-add-presentation"
                     name="presentation"
                     inputProps={{
                       accept: '.pptx',
@@ -81,8 +83,8 @@ function AddLessonForm() {
               </FormControl>
             </Grid>            
             <Grid item lg={6}>
-                <Button color='primary' type='submit'>
-                    Добавить урок
+                <Button  data-testid="menu-item_create_lesson" color='primary' type='submit'>
+                  Создать урок
                 </Button>  
             </Grid>          
           </Grid>

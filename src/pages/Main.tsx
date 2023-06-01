@@ -32,7 +32,7 @@ function Main() {
             sx={{
               boxShadow: '1px 4px 4px 2px rgba(131, 131, 131, 0.25)',
               borderRadius: '50px', 
-              paddingLeft: '20px',
+              paddingLeft: '20px',  
               outline: '0',
               width: '25%',
               mt: '20px',              
@@ -67,7 +67,7 @@ function Main() {
           {/* <Divider sx={{ backgroundColor: 'black' }} orientation="vertical" flexItem /> */}
 
       </Stack>
-      <Stack justifyContent='center' alignItems='center' width='70%'>
+      <Stack justifyContent='center' alignItems='center' width='70%' mt={18}>
         <Box
           sx={{ 
             border: '1px solid black',

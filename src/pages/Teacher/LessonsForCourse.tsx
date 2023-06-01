@@ -19,7 +19,7 @@ function LessonsForCourse() {
             </Stack>
             <Stack mt={4} direction='row' flexWrap='nowrap' spacing={2} width='70%'>
                 {lessons.map((les: Lesson) => 
-                    <LessonItemCard key={les.id} title={les.title} lecture_url={''} presentation_url={''}/>)
+                    <LessonItemCard key={les.id} title={les.title} lecture_url={les.lecture_url} presentation_url={les.presentation_url}/>)
                 }
             </Stack>    
         </Box>  

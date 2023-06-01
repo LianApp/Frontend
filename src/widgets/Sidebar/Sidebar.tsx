@@ -36,7 +36,7 @@
         height="100vh"
         position="fixed"
         py={{ lg: 2, xs: 2 }}
-        px={{ lg: 4, xs: 2 }}
+        px={{ lg: 2, xs: 2 }}
         justifyContent="space-between"
         width={{ xs: '100%', md: '12%' }}
       >
@@ -51,14 +51,14 @@
               <Typography  fontFamily='Montserrat' fontSize="22px">Основное</Typography>
               {role === "TEACHER" && (
               <ListItem>
-                <Typography fontFamily='Montserrat' fontSize="12px">Добавить курс</Typography>
+                <Typography fontFamily='Montserrat' fontSize="14px">Добавить курс</Typography>
               </ListItem>
               )}
               <ListItem onClick={() => navigate(roleNavigate)}>
-                <Typography fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="12px">{lessonForRole}</Typography>
+                <Typography fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="14px">{lessonForRole}</Typography>
               </ListItem>
               <ListItem>
-                <Typography fontFamily='Montserrat' fontSize="12px">Тесты</Typography>
+                <Typography fontFamily='Montserrat' fontSize="14px">Тесты</Typography>
               </ListItem>              
             </List>
           </ListItem>

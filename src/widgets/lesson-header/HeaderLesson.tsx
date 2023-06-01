@@ -8,7 +8,7 @@ function HeaderLesson() {
   const title = useLesson(state => state.title)
   return (
     <Stack direction="row" justifyContent="space-between" width="90%" alignItems="center">
-      <Typography fontFamily='Montserrat' fontSize="46px">
+      <Typography fontFamily='Montserrat' fontSize="32px">
         Урок -
         {' '}
         {title}

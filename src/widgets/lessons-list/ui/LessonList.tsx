@@ -53,7 +53,13 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
       </Stack>
       {/* height={['auto', '100%']} */}
       <Stack direction={['column', 'row']} gap={4} mt={[2, 4]} width="100%" >
-        {lessons.map(lesson => <LessonItemCard key={lesson.id} title={lesson.title} lecture_url={''} presentation_url={''}/>)}
+        {lessons.map(lesson => 
+          <LessonItemCard 
+            key={lesson.id} 
+            title={lesson.title} 
+            lecture_url={lesson.lecture_url} 
+            presentation_url={lesson.presentation_url}/>
+        )}
       </Stack>
     </Box>
   );  
