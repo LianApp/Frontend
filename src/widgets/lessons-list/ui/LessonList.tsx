@@ -24,6 +24,7 @@ export interface LessonListProps {
 export function LessonList({ color, title, lessons, icon }: LessonListProps) {
   return (
     <Box
+      id="lesson"
       width="100%"
       height={['30%', '30%']}
       px={[1, 3]}
@@ -31,7 +32,7 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
       sx={{
         backgroundColor: color,
         border: '1.5px solid black',
-        borderRadius: ['10px', '20px'],        
+        borderRadius: ['10px', '20px'],
         flexDirection: ['column', 'row'],
       }}
     >
@@ -53,15 +54,8 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
       </Stack>
       {/* height={['auto', '100%']} */}
       <Stack direction={['column', 'row']} gap={4} mt={[2, 4]} width="100%" >
-        {lessons.map(lesson => 
-          <LessonItemCard 
-            key={lesson.id} 
-            title={lesson.title} 
-            lecture_url={lesson.lecture_url} 
-            presentation_url={lesson.presentation_url}/>
-        )}
+        {lessons.map(lesson => <LessonItemCard key={lesson.id} title={lesson.title} lecture_url={''} presentation_url={''}/>)}
       </Stack>
     </Box>
-  );  
+  );
 }
-
