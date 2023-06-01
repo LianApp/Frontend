@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import {
-  Box, Typography, Stack, IconButton, InputBase, Divider, Button,
+  Box, Typography, Stack, IconButton, InputBase, Divider, Button, Input,
 } from '@mui/material';
 import ActivityCard from 'widgets/activity-card/ui/ActivityCard';
 import ItemCard from 'shared/ui/ItemCard/ItemCard';
@@ -23,16 +23,17 @@ function Main() {
 
   return (
     <Box mt={4} ml={5} width="100vw" height="100vh">
-      <Typography fontFamily='Montserrat' fontSize="46px">Добро пожаловать, {userName}!</Typography>
+      <Typography variant='h1' id="welcometext" fontFamily='Montserrat' fontSize="46px">Добро пожаловать, {userName}!</Typography>
 
       <Stack direction='column' mt={4} width="100%" maxHeight="100vh" height="45%" justifyContent='space-between'>
         <Stack width='70%' direction={{lg: 'row', xs: 'column'}} justifyContent='space-between'>
-          <Typography fontFamily='Montserrat' fontSize="36px">Мои уроки</Typography>
-          <InputBase  
+          <Typography id="item_mylessons" fontFamily='Montserrat' fontSize="36px">Мои уроки</Typography>
+          <Input
+          
             sx={{
               boxShadow: '1px 4px 4px 2px rgba(131, 131, 131, 0.25)',
               borderRadius: '50px', 
-              paddingLeft: '20px',  
+              paddingLeft: '20px',
               outline: '0',
               width: '25%',
               mt: '20px',              
@@ -42,9 +43,9 @@ function Main() {
         </Stack>
         
 
-        <Stack direction="row" spacing={8} height="100%" mt={6}>  
+        <Stack data-cy="courses-list" direction="row" spacing={8} height="100%" mt={6}>  
             {courses.data?.data.map((course: CourseType) => (
-                <Stack key={course.id} direction="column" width="20%">
+                <Stack data-cy="course-items" key={course.id} direction="column" width="20%">
                   <Box 
                     sx={{ 
                       border: '1px solid black',
@@ -67,8 +68,10 @@ function Main() {
           {/* <Divider sx={{ backgroundColor: 'black' }} orientation="vertical" flexItem /> */}
 
       </Stack>
-      <Stack justifyContent='center' alignItems='center' width='70%' mt={18}>
+      <Stack justifyContent='center' alignItems='center' width='70%'>
         <Box
+        component="button"
+        data-cy="button"
           sx={{ 
             border: '1px solid black',
             borderRadius: '20px',
