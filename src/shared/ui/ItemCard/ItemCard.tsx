@@ -31,7 +31,7 @@ function ItemCard({ title, lecture_url, presentation_url }: Lesson) {
         navigate('/lessons/1/pres')
       }}
     >
-      <Typography fontFamily='Montserrat' fontSize="18px">{title}</Typography>
+      <Typography data-cy="item-card" fontFamily='Montserrat' fontSize="18px">{title}</Typography>
     </Box>
   );
 }
