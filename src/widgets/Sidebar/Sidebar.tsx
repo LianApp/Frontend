@@ -77,7 +77,7 @@ function Sidebar() {
         <Typography fontFamily='Montserrat' ml={2} fontSize={{md: "12px", xs: "10px"}}>{name}</Typography>
         <Box >
           <Tooltip title="Выйти">
-            <IconButton onClick={logout}>
+            <IconButton data-cy='logout' onClick={logout}>
               <LogoutIcon />
             </IconButton>
           </Tooltip>
