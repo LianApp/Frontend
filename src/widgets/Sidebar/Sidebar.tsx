@@ -29,77 +29,107 @@ function Sidebar() {
     setOpen(isOpen);
   };
 
-  const menuItems = (
-    <Stack
-      direction="column"
-      borderRight={{ md: 1, xs: 0, lg: 1 }} 
-      height="100vh"
-      position="fixed"
-      py={{ lg: 2, xs: 2 }}
-      px={{ lg: 4, xs: 2 }}
-      justifyContent="space-between"
-      width={{ xs: '100%', md: '12%' }}
-    >
-      <List>
-        <Logo />  
-        <ListItem onClick={() => navigate(homeNavigate)}>
-          <Typography id="item_main" fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="22px">Главная</Typography>
-        </ListItem>
-        <Divider />
-        <ListItem>
-          <List>
-            <Typography  fontFamily='Montserrat' fontSize="22px">Основное</Typography>
-            {role === "TEACHER" && (
-            <ListItem>
-              <Typography fontFamily='Montserrat' fontSize="12px">Добавить курс</Typography>
-            </ListItem>
-            )}
-            <ListItem onClick={() => navigate(roleNavigate)}>
-              <Typography fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="12px">{lessonForRole}</Typography>
-            </ListItem>
-            <ListItem>
-              <Typography fontFamily='Montserrat' fontSize="12px">Тесты</Typography>
-            </ListItem>              
-          </List>
-        </ListItem>
-        <Divider />
-        <ListItem>
-          <List>
-            <Typography fontFamily='Montserrat' fontSize="22px">Помощь</Typography>
-            <ListItem>
-              <Typography fontFamily='Montserrat' fontSize="14px">Документация</Typography>
-            </ListItem>
-          </List>
-        </ListItem>
-      </List>
-      <Box display="flex" alignItems="center">
-        <Avatar alt="User User">{name[0][0]}</Avatar>
-        <Typography fontFamily='Montserrat' ml={2} fontSize={{md: "12px", xs: "10px"}}>{name}</Typography>
-        <Box >
-          <Tooltip title="Выйти">
-            <IconButton data-cy='logout' onClick={logout}>
-              <LogoutIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-      </Box>
-    </Stack>
-  );
+  // const menuItems = (
+  //   <Stack
+  //     direction="column"
+  //     borderRight={{ md: 1, xs: 0, lg: 1 }} 
+  //     height="100vh"
+  //     position="fixed"
+  //     py={{ lg: 2, xs: 2 }}
+  //     px={{ lg: 4, xs: 2 }}
+  //     justifyContent="space-between"
+  //     width={{ xs: '100%', md: '12%' }}
+  //   >
+  //     <List>
+  //       <Logo />  
+  //       <ListItem onClick={() => navigate(homeNavigate)}>
+  //         <Typography id="item_main" fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="22px">Главная</Typography>
+  //       </ListItem>
+  //       <Divider />
+  //       <ListItem>
+  //         <List>
+  //           <Typography  fontFamily='Montserrat' fontSize="22px">Основное</Typography>
+  //           {role === "TEACHER" && (
+  //           <ListItem>
+  //             <Typography fontFamily='Montserrat' fontSize="12px">Добавить курс</Typography>
+  //           </ListItem>
+  //           )}
+  //           <ListItem onClick={() => navigate(roleNavigate)}>
+  //             <Typography fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="12px">{lessonForRole}</Typography>
+  //           </ListItem>
+  //           <ListItem>
+  //             <Typography fontFamily='Montserrat' fontSize="12px">Тесты</Typography>
+  //           </ListItem>              
+  //         </List>
+  //       </ListItem>
+  //       <Divider />
+  //       <ListItem>
+  //         <List>
+  //           <Typography fontFamily='Montserrat' fontSize="22px">Помощь</Typography>
+  //           <ListItem>
+  //             <Typography fontFamily='Montserrat' fontSize="14px">Документация</Typography>
+  //           </ListItem>
+  //         </List>
+  //       </ListItem>
+  //     </List>
+  //     <Box display="flex" alignItems="center">
+  //       <Avatar alt="User User">{name[0][0]}</Avatar>
+  //       <Typography fontFamily='Montserrat' ml={2} fontSize={{md: "12px", xs: "10px"}}>{name}</Typography>
+  //       <Box >
+  //         <Tooltip title="Выйти">
+  //           <IconButton data-cy='logout' onClick={logout}>
+  //             <LogoutIcon />
+  //           </IconButton>
+  //         </Tooltip>
+  //       </Box>
+  //     </Box>
+  //   </Stack>
+  // );
 
   return (
-    <>
-      <Box display={{ xs: 'block', md: 'none' }} >
-        <IconButton onClick={() => toggleDrawer(true)}>
-          <MenuIcon />
-        </IconButton>
-        <Drawer anchor="left" open={open} onClose={() => toggleDrawer(false)}>
-          {menuItems}          
-        </Drawer>
-      </Box>
-      <Box display={{ xs: 'none', md: 'block' }}>
-        {menuItems}
-      </Box>      
-    </>
+      <Box  
+          bgcolor='#5D7CFB' 
+          height='100%' 
+          px={2}
+          position='fixed' 
+          display='flex' 
+          flexDirection='column' 
+          alignItems='center' 
+          justifyContent='space-between' 
+        > 
+          <Box py={2}> 
+            <Typography color='white' fontSize='25px'>LIAN</Typography> 
+            <Box 
+              mt={4} 
+              display='flex' 
+              flexDirection='column' 
+              alignItems='center' 
+              gap={4} 
+            > 
+              <IconButton onClick={() => navigate(homeNavigate)}>
+                <img src='../icons/Vector.svg'  />  
+              </IconButton> 
+              <IconButton onClick={() => navigate(roleNavigate)}>
+                <img src='../icons/lessons.svg' /> 
+              </IconButton> 
+              <IconButton>
+                <img src='../icons/78.svg' /> 
+              </IconButton> 
+            </Box> 
+          </Box> 
+          <Box 
+            display='flex' 
+            flexDirection='column' 
+            alignItems='center' 
+            gap={2} 
+            mb={4} 
+          > 
+              <img src='../icons/login.svg' /> 
+              <IconButton onClick={logout}>
+                <img src='../icons/logout.svg' /> 
+              </IconButton> 
+          </Box> 
+        </Box>     
   );
 }
 
