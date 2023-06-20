@@ -7,10 +7,12 @@ import withSidebar from 'shared/hoc/withSidebar';
 import HeaderLesson from 'widgets/lesson-header/HeaderLesson';
 import { AnimatedPage } from 'features/AnimatedPage/ui/AnimatedPage';
 import useLesson from 'entities/lesson/api/useLesson';
+import { useNavigate } from 'react-router-dom';
 
 // Google viewer http://docs.google.com/viewer?url=${linkToPPTFile}&embedded=true
 
 function Presentation() {
+  const navigate = useNavigate()
   const url = useLesson(state => state.presentation_url)
   const linkToPPTFile = 'https://scholar.harvard.edu/files/torman_personal/files/samplepptx.pptx';  
   return (
@@ -19,7 +21,7 @@ function Presentation() {
 
         <HeaderLesson />
 
-        <Stack direction="column" width="90%" height="70%" mt={6} alignItems="center">
+        <Stack direction="column" width="95%" height="70%" mt={6} alignItems="center">
           <iframe
             src={`https://view.officeapps.live.com/op/embed.aspx?src=${url}`}
             width="100%"
@@ -29,7 +31,7 @@ function Presentation() {
           />
         </Stack>
 
-        <Stack alignItems="flex-end" width="90%" mt={6}>
+        <Stack alignItems="flex-end" width="95%" mt={6}>
           <Button
             sx={{
               boxShadow: '0px 4px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -38,8 +40,9 @@ function Presentation() {
               px: '8px',
             }}
             size="small"
+            onClick={() => navigate("/lessons/1/lecture")}
           >
-            <Typography fontSize="12px">Перейти к лекции</Typography>
+            <Typography fontSize="12px">К лекции</Typography>
             <IconButton>
               <ArrowForward />
             </IconButton>

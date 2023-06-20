@@ -7,12 +7,7 @@ import withSidebar from 'shared/hoc/withSidebar';
 import axios from 'shared/api/axiosConfig'
 import { useQuery } from 'react-query';
 
-const colors = ['#355C7D','#6C5B7B', '#FF847C', "#EDB72B"]
 
-function chooseColor(colors: string[]): string {
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  return colors[randomIndex];
-}
 
 function Lessons() {  
   const blessed = useQuery('blessed', async () => {
@@ -23,18 +18,7 @@ function Lessons() {
   return (
     <Box mt={4} ml={5}>
       <Stack direction="row" justifyContent="space-between" width="95%">
-        <Typography fontFamily='Montserrat' fontSize="46px">Мои предметы</Typography>
-        <InputBase
-          sx={{
-            boxShadow: '1px 4px 4px 2px rgba(131, 131, 131, 0.25)',
-            borderRadius: '50px',
-            paddingLeft: '20px',
-            outline: '0',
-            width: '30%',
-            mt: '20px',
-          }}
-          placeholder="Поиск..."
-        />
+        <Typography fontFamily='Montserrat' fontSize="46px">Мои курсы</Typography>        
       </Stack>
 
       <Stack data-cy="lesson-list" width="95%" height="100vh" mt={4} spacing={2}>

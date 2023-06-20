@@ -7,13 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from 'shared/ui/Logo/Logo';
 import useAuth from 'entities/user/api/lib/useAuth';
-import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from './icons/Vector.svg';
+import LessonsIcon from './icons/lessons.svg';
+import LoginIcon from './icons/login.svg';
+import LogoutIcon from './icons/logout.svg';
 
 function Sidebar() {
   const navigate = useNavigate();
   const name = useAuth(state => state.userName)
   const role = useAuth(state => state.role)
   const [open, setOpen] = useState(false);
+  const [activeButton, setActiveButton] = useState<string | null>(null);
 
   const roleNavigate = role === "STUDENT" ? "/lessons" : "/add-lesson"
   const lessonForRole = role === "STUDENT" ? "Уроки" : "Добавить урок"
@@ -24,112 +28,90 @@ function Sidebar() {
     navigate("/login")
   }
 
+  const handleButtonClick = (buttonName: string) => {
+    setActiveButton(buttonName);
+  };
+
   // eslint-disable-next-line no-unused-vars
   const toggleDrawer = (isOpen: boolean | ((prev: boolean) => boolean)) => {
     setOpen(isOpen);
   };
 
-  // const menuItems = (
-  //   <Stack
-  //     direction="column"
-  //     borderRight={{ md: 1, xs: 0, lg: 1 }} 
-  //     height="100vh"
-  //     position="fixed"
-  //     py={{ lg: 2, xs: 2 }}
-  //     px={{ lg: 4, xs: 2 }}
-  //     justifyContent="space-between"
-  //     width={{ xs: '100%', md: '12%' }}
-  //   >
-  //     <List>
-  //       <Logo />  
-  //       <ListItem onClick={() => navigate(homeNavigate)}>
-  //         <Typography id="item_main" fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="22px">Главная</Typography>
-  //       </ListItem>
-  //       <Divider />
-  //       <ListItem>
-  //         <List>
-  //           <Typography  fontFamily='Montserrat' fontSize="22px">Основное</Typography>
-  //           {role === "TEACHER" && (
-  //           <ListItem>
-  //             <Typography fontFamily='Montserrat' fontSize="12px">Добавить курс</Typography>
-  //           </ListItem>
-  //           )}
-  //           <ListItem onClick={() => navigate(roleNavigate)}>
-  //             <Typography fontFamily='Montserrat' sx={{ cursor: 'pointer' }} fontSize="12px">{lessonForRole}</Typography>
-  //           </ListItem>
-  //           <ListItem>
-  //             <Typography fontFamily='Montserrat' fontSize="12px">Тесты</Typography>
-  //           </ListItem>              
-  //         </List>
-  //       </ListItem>
-  //       <Divider />
-  //       <ListItem>
-  //         <List>
-  //           <Typography fontFamily='Montserrat' fontSize="22px">Помощь</Typography>
-  //           <ListItem>
-  //             <Typography fontFamily='Montserrat' fontSize="14px">Документация</Typography>
-  //           </ListItem>
-  //         </List>
-  //       </ListItem>
-  //     </List>
-  //     <Box display="flex" alignItems="center">
-  //       <Avatar alt="User User">{name[0][0]}</Avatar>
-  //       <Typography fontFamily='Montserrat' ml={2} fontSize={{md: "12px", xs: "10px"}}>{name}</Typography>
-  //       <Box >
-  //         <Tooltip title="Выйти">
-  //           <IconButton data-cy='logout' onClick={logout}>
-  //             <LogoutIcon />
-  //           </IconButton>
-  //         </Tooltip>
-  //       </Box>
-  //     </Box>
-  //   </Stack>
-  // );
+  const isActive = (buttonName: string) => {
+    return activeButton === buttonName;
+  };
 
   return (
-      <Box  
-          bgcolor='#5D7CFB' 
-          height='100%' 
-          px={2}
-          position='fixed' 
+    <Box  
+      bgcolor='#5D7CFB' 
+      height='100%' 
+      px={2}
+      position='fixed' 
+      display='flex' 
+      flexDirection='column' 
+      alignItems='center' 
+      justifyContent='space-between' 
+    > 
+      <Box py={2}> 
+        <Typography color='white' fontSize='25px'>LIAN</Typography> 
+        <Box 
+          mt={4} 
           display='flex' 
           flexDirection='column' 
           alignItems='center' 
-          justifyContent='space-between' 
+          gap={4} 
         > 
-          <Box py={2}> 
-            <Typography color='white' fontSize='25px'>LIAN</Typography> 
-            <Box 
-              mt={4} 
-              display='flex' 
-              flexDirection='column' 
-              alignItems='center' 
-              gap={4} 
-            > 
-              <IconButton onClick={() => navigate(homeNavigate)}>
-                <img src='../icons/Vector.svg'  />  
-              </IconButton> 
-              <IconButton onClick={() => navigate(roleNavigate)}>
-                <img src='../icons/lessons.svg' /> 
-              </IconButton> 
-              <IconButton>
-                <img src='../icons/78.svg' /> 
-              </IconButton> 
-            </Box> 
+          <Box
+            sx={{
+              borderRadius: '50%',
+              border: isActive('home') ? '1px solid white' : '',
+            }}
+          >
+            <IconButton 
+              onClick={() => {
+                navigate(homeNavigate);
+                handleButtonClick('home');
+              }}
+              sx={{                
+                borderRadius: '50%',
+              }}
+            >
+              <img src={HomeIcon}  />  
+            </IconButton>
           </Box> 
-          <Box 
-            display='flex' 
-            flexDirection='column' 
-            alignItems='center' 
-            gap={2} 
-            mb={4} 
-          > 
-              <img src='../icons/login.svg' /> 
-              <IconButton onClick={logout}>
-                <img src='../icons/logout.svg' /> 
-              </IconButton> 
-          </Box> 
-        </Box>     
+          <Box
+            sx={{
+              borderRadius: '50%',
+              border: isActive('lessons') ? '1px solid white' : '',
+            }}
+          >
+            <IconButton 
+              onClick={() => {
+                navigate(roleNavigate);
+                handleButtonClick('lessons');
+              }}
+              sx={{                
+                borderRadius: '50%',
+              }}
+            >
+              <img src={LessonsIcon} /> 
+            </IconButton>
+          </Box>             
+        </Box> 
+      </Box> 
+      <Box 
+        display='flex' 
+        flexDirection='column' 
+        alignItems='center' 
+        gap={2} 
+        mb={4} 
+      > 
+          <img src={LoginIcon} /> 
+          <IconButton onClick={logout}>
+            <img src={LogoutIcon}/> 
+          </IconButton> 
+      </Box> 
+    </Box>     
   );
 }
 
