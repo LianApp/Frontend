@@ -33,7 +33,7 @@ function Lecture() {
               px: '8px',
             }}
             size="small"
-            onClick={() => navigate("/lessons/1/presПоэзия золотого века")}
+            onClick={() => navigate("/lessons/1/pres")}
           >
             <IconButton>
               <ArrowBack />

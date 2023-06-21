@@ -56,9 +56,6 @@ function Main() {
            
           </Stack>
                     
-          {/* <Slider
-                {...settings}
-          >  */}
           <Stack direction="row" gap={2}>          
           {courses.data?.data.map((course: CourseType) => (
               <Box 
@@ -82,7 +79,7 @@ function Main() {
               </Box> 
             ))}
             </Stack>
-          {/* </Slider> */}
+
         </Stack> 
     </Box>  
   );
