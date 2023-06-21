@@ -23,7 +23,7 @@ function Lessons() {
 
       <Stack data-cy="lesson-list" width="95%" height="100vh" mt={4} spacing={2}>
         {blessed.data?.data.slice(0, 4).map((course: LessonListProps) => 
-          <LessonList key={course.id} icon={course.icon} color="#EDB72B" title={course.title} lessons={course.lessons} />
+          <LessonList key={course.id} icon={course.icon} title={course.title} lessons={course.lessons} />
         )}
       </Stack>
 

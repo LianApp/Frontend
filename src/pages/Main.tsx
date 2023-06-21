@@ -16,13 +16,17 @@ import Slide from 'shared/ui/Slider';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick"; 
+import useLesson from 'entities/lesson/api/useLesson';
 
 const settings = {
+  className: "slider variable-width",
   dots: true,
   speed: 800,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
+  // adaptiveHeight: true,
+  // variableWidth: true,
 };
 
 function Main() {
@@ -31,7 +35,12 @@ function Main() {
   const courses = useQuery('courses', async () => {
     return await axios.get('/students/courses')
   })
-  console.log(courses.data?.data);
+  const setLesson = useLesson((state) => state.setLesson);
+
+  const goToLesson = (lesson: Lesson) => {
+    navigate('/lessons/1/pres');
+    setLesson(lesson);
+  }
   
   return (
     <Box mt={4} ml={5} width="100vw" height="100vh">
@@ -40,33 +49,40 @@ function Main() {
           mt={4}
           direction='column' 
         > 
-          <Typography fontSize='20px' color='#6B7280'>Последние курсы</Typography>           
-          <Slider
+          <Stack direction="row" width="85%" alignItems="center" justifyContent="space-between">
+            <Typography fontSize='20px' color='#6B7280'>Последние курсы</Typography>  
+            
+            <Typography onClick={() => navigate('/lessons')} fontSize='14px' sx={{cursor: 'pointer'}} color='#5D7CFB'>Смотреть все</Typography>
+           
+          </Stack>
+                    
+          {/* <Slider
                 {...settings}
-                variableWidth={false}
-          > 
-          
+          >  */}
+          <Stack direction="row" gap={2}>          
           {courses.data?.data.map((course: CourseType) => (
               <Box 
                 px={4} 
                 py={2} 
-                width='25%' 
+                width='27%'
+                height='40%'                 
                 sx={{ 
                   boxShadow: '0px 12px 32px -3px rgba(0, 0, 0, 0.1)', 
                   borderRadius: '27px', 
                 }} 
+                mt={4}
               > 
               
                 <Typography fontSize='24px'>{course.title}</Typography> 
                 <List> 
                   {course.lessons.map((l: Lesson) => (
-                    <ListItem sx={{fontSize: '12px'}}>{l.title}</ListItem> 
+                    <ListItem onClick={() => goToLesson(l)} sx={{fontSize: '12px', cursor: "pointer"}}>{l.title}</ListItem> 
                   ))}                      
                 </List> 
               </Box> 
             ))}
-            {/* <Slide options={settings} items={courses.data?.data} />   */}
-          </Slider>
+            </Stack>
+          {/* </Slider> */}
         </Stack> 
     </Box>  
   );

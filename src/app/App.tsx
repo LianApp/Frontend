@@ -14,6 +14,7 @@ import AddLessonPage from 'pages/Teacher/AddLessonPage';
 import LessonsForCourse from 'pages/Teacher/LessonsForCourse';
 import StudentsList from 'features/StudentsList/StudentsList';
 import AddLessonForm from 'features/AddLessonForm/AddLessonForm';
+import LessonsCourse from 'pages/LessonsCourse';
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
         <Route element={<ProtectedRoute allowedRoles={[Role.STUDENT]} />}>
           <Route path="/" element={<Main />} />          
           <Route path="/lessons" element={<Lessons />} />
+          <Route path="/course" element={<LessonsCourse />} />
         </Route>
         <Route element={<ProtectedRoute allowedRoles={[Role.STUDENT, Role.TEACHER]}/> } >
           <Route path="/lessons/1/pres" element={<Presentation />} />

@@ -4,6 +4,9 @@ import {
   Box, Stack, Typography, IconButton, Icon,
 } from '@mui/material';
 import LessonItemCard from 'entities/lesson/ui/LessonItemCard';
+import { CourseType } from 'entities/course/model/course.model';
+import useCourse from 'entities/course/api/useCourse';
+import { useNavigate } from 'react-router-dom'
 
 export interface Lesson {
   id?: number
@@ -15,13 +18,25 @@ export interface Lesson {
 
 export interface LessonListProps {
   id?: number
-  color: string;
   title: string;
   icon: string
   lessons: Lesson[]
 }
 
-export function LessonList({ color, title, lessons, icon }: LessonListProps) {
+export function LessonList({ id, title, lessons, icon }: LessonListProps) {
+  const setCourse = useCourse(state => state.setCourse)
+  const navigate = useNavigate()
+  const course = {
+    id,
+    title,
+    lessons,
+  }
+
+  const goToCourse = (course: CourseType) => {
+    setCourse(course)
+    navigate("/course")
+  }
+
   return (
     <Box
       id="lesson"
@@ -43,7 +58,7 @@ export function LessonList({ color, title, lessons, icon }: LessonListProps) {
         <Stack direction='row' alignItems='center'>
           <Typography  data-testid="lesson-title" fontFamily='Montserrat'  fontSize={['24px', '34px']}>{title}</Typography>
         </Stack>
-        <Typography fontSize='14px' sx={{cursor: 'pointer'}} color='#5D7CFB'>Смотреть все</Typography>
+        <Typography onClick={() => goToCourse(course)} fontSize='14px' sx={{cursor: 'pointer'}} color='#5D7CFB'>Смотреть все</Typography>
 
       </Stack>  
       <Stack direction={['column', 'row']} gap={4} mt={[2, 4]} width="100%" >

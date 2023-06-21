@@ -6,5 +6,5 @@ export interface CourseType {
     lessons: Lesson[]
     subject_id?: number
     teacher_id?: number
-    icon: string
+    icon?: string
 }
