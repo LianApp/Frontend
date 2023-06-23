@@ -128,6 +128,7 @@ function TeacherPage() {
             fontSize="14px"
             sx={{ cursor: "pointer" }}
             color="#5D7CFB"
+            onClick={() => navigate('/add-lesson')}
           >
             Смотреть все
           </Typography>

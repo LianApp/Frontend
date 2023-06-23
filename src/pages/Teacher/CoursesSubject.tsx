@@ -1,7 +1,5 @@
 import { Box, Button, Container, Input, Modal, Stack, TextField, Typography } from "@mui/material";
 import { CourseType } from "entities/course/model/course.model";
-import CourseCard from "entities/course/ui/CourseCard";
-import useAuth from "entities/user/api/lib/useAuth";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import axios from "shared/api/axiosConfig";
@@ -12,8 +10,10 @@ import { ArrowForward } from "@mui/icons-material";
 import useSubject, { Subject } from "entities/subject/useSubject";
 import { Group } from "shared/ui/GroupCard/GroupCard";
 import Toast from "shared/ui/Toast/Toast";
+import useCourse from "entities/course/api/useCourse";
+import { useNavigate } from "react-router-dom";
 
-const style = {
+export const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
@@ -31,6 +31,8 @@ function CoursesSubject() {
   const [text, setText] = useState()
   const [courseName, setCourseName] = useState('')
   const [open, setOpen] = useState(false)
+  const setCourse = useCourse(state => state.setCourse)
+  const navigate = useNavigate()
 
   const courses = useQuery("courses", async () => {
     return await axios.get(`/teacher/courses`);
@@ -105,7 +107,11 @@ function CoursesSubject() {
                 {c.title}
               </Typography>
               <Stack alignItems="end" mt={5}>
-                <Box             
+                <Box    
+                  onClick={() => {
+                    setCourse(c)
+                    navigate('/teacher/course/lessons')                                       
+                  }}         
                   sx={{
                     borderRadius: "20px",
                     cursor: "pointer",
@@ -177,7 +183,7 @@ function CoursesSubject() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, background: 'green' }}
             >
               Добавить
             </Button>      
