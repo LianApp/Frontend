@@ -16,6 +16,7 @@ import StudentsList from 'features/StudentsList/StudentsList';
 import AddLessonForm from 'features/AddLessonForm/AddLessonForm';
 import LessonsCourse from 'pages/LessonsCourse';
 import CoursesSubject from 'pages/Teacher/CoursesSubject';
+import Dashboard from 'pages/Dashboard';
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,9 @@ function App() {
           <Route path='/students/list' element={<StudentsList />}/>
           <Route path='/add-lesson/form' element={<AddLessonForm />}/>
           <Route path='/subjects/course' element={<CoursesSubject />}/>
+        </Route>
+        <Route element={<ProtectedRoute allowedRoles={[Role.ORAGANIZATOR]} />}>
+          <Route path="/dashboard" element={<Dashboard />} />          
         </Route>
         <Route path="/login" element={<Login />}/>
       </Routes>

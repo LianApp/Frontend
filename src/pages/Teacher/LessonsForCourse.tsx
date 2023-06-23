@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import withSidebar from "shared/hoc/withSidebar";
 import { style } from "./CoursesSubject";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import instance from "shared/api/axiosConfig";
 import Toast from "shared/ui/Toast/Toast";
 
@@ -25,17 +25,22 @@ function LessonsForCourse() {
     })
   })  
 
+  const less = useQuery('da', async () => {
+    return await instance.get(`/courses/${id}/lessons`)
+  })
+  console.log(less.data?.data);
+  
+
   const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     console.log(data.get("lecture"));
     console.log(data.get("presentation"));
-    console.log(data.get("name"));      
+    console.log(data.get("title"));      
     try {
-        const res = await addLeson.mutateAsync(data as never as void)  
-        if(res.data) {
-            handleClose()
-        }
+        await addLeson.mutateAsync(data as never as void)          
+        less.refetch()     
+        handleClose()   
     } catch (error) {
         setOpen(true)        
     }
@@ -56,7 +61,7 @@ function LessonsForCourse() {
         <Typography fontSize="32px">Мои уроки по курсу {title}</Typography>        
       </Stack>
       <Stack mt={4} direction="row" flexWrap="nowrap" spacing={2} width="70%">
-        {lessons.map((les: Lesson) => (
+        {less.data?.data.map((les: Lesson) => (
           <LessonItemCard
             key={les.id}
             title={les.title}
@@ -107,7 +112,7 @@ function LessonsForCourse() {
               required
               fullWidth
               id="course_name"
-              name="name"
+              name="title"
               label="Название урока..."              
               autoFocus
             />            
@@ -140,7 +145,7 @@ function LessonsForCourse() {
                         hidden
                     />
                 </Button>
-            </Stack>
+            </Stack>            
             <Button
               type="submit"
               fullWidth

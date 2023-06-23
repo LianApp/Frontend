@@ -13,6 +13,7 @@ export default function Login() {
   const setRole = useAuth(state => state.setUserRole)
   const setUserName = useAuth(state => state.setUserName)
   const setGroupId = useAuth(state => state.setGroupId)
+  const setOrgId = useAuth(state => state.setOrgId)
 
   const mut = useMutation(newLogin => {
     return instance.post('/login', newLogin)
@@ -31,10 +32,14 @@ export default function Login() {
       if (res.data) {     
         localStorage.setItem('accessToken', res.data.accessToken)
         const me = instance.get('/me')    
-        const {name, role, group_id } = (await me).data  
+        const {name, role, group_id } = (await me).data          
         setGroupId(group_id)
         setUserName(name)   
         setRole(role) 
+
+        if((await me).data.organization_id) {
+          setOrgId((await me).data.organization_id)
+        }
         
         switch(role) {
           case 'TEACHER':
@@ -42,6 +47,9 @@ export default function Login() {
             break;
           case 'STUDENT':
             navigate('/');
+            break;
+          case 'ORGANIZATOR':
+            navigate('/dashboard');
             break;
         }    
       }

@@ -13,8 +13,8 @@ function StudentList() {
         return await instance.get(`/groups/${id}/students`)
     })
     return (
-    <Stack>
-        <Box mt={6}>
+    <Stack mt={6} ml={5}>
+        <Box>
             <Typography fontSize="26px">Студенты группы {name}</Typography>
         </Box>
         <TableContainer component={Paper} sx={{mt: 8}}>
