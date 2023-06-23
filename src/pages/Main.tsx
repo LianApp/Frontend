@@ -56,13 +56,13 @@ function Main() {
            
           </Stack>
                     
-          <Stack direction="row" gap={2}>          
+          <Stack direction="row" width='100%' gap={2}>          
           {courses.data?.data.map((course: CourseType) => (
               <Box 
                 px={4} 
                 py={2} 
-                width='27%'
-                height='40%'                 
+                minWidth='29%'
+                minHeight='40%'                 
                 sx={{ 
                   boxShadow: '0px 12px 32px -3px rgba(0, 0, 0, 0.1)', 
                   borderRadius: '27px', 

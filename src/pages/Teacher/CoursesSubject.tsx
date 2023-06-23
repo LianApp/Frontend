@@ -6,13 +6,12 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import axios from "shared/api/axiosConfig";
 import withSidebar from "shared/hoc/withSidebar";
-// import InputEmoji from 'react-input-emoji'
+{/* @ts-ignore */}
+import InputEmoji from 'react-input-emoji'
 import { ArrowForward } from "@mui/icons-material";
-import instance from "shared/api/axiosConfig";
 import useSubject, { Subject } from "entities/subject/useSubject";
-import { useNavigate } from "react-router-dom";
-import useCourse from "entities/course/api/useCourse";
 import { Group } from "shared/ui/GroupCard/GroupCard";
+import Toast from "shared/ui/Toast/Toast";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -26,29 +25,46 @@ const style = {
     borderRadius: '25px'
   };
 
-function TeacherPage() {
+function CoursesSubject() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate()
-  const setSubject = useSubject(state => state.setSubject)
-  const subjId = useCourse(state => state.subject_id)
-  console.log(subjId);
-  
-  // const [subName, setSubName] = useState('')
+  const { id, name } = useSubject()
+  const [text, setText] = useState()
+  const [courseName, setCourseName] = useState('')
+  const [open, setOpen] = useState(false)
 
-  // const subjMut = useMutation(newSubj => {
-  //   return instance.post('/subjects', newSubj, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-  //     }
-  //   })
-  // })
+  const courses = useQuery("courses", async () => {
+    return await axios.get(`/teacher/courses`);
+  });
 
-  // const addSubject = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault(); 
-  //   await subjMut.mutateAsync({name: subName} as never as void)
-  //   subjects.refetch()
-  //   handleClose()
-  // }
+  const groups = useQuery("groups", async () => {
+    return await axios.get("/groups");
+  });
+
+  const groupIds = groups.data?.data.map((group: Group) => group.id)
+
+  const courseMut = useMutation(newCourse => {
+    return axios.post('/courses', newCourse)
+  })
+
+  const addCourse = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); 
+
+    try {        
+        const res = await courseMut.mutateAsync({
+            title: courseName,
+            subjectId: id,
+            groupIds: groupIds,
+            icon: text,
+        } as never as void)
+
+        if(res.data) {            
+            courses.refetch()
+            handleClose()
+        }
+    } catch (error) {
+        setOpen(true)
+    }
+  }
 
   const handleOpen = () => {
     setIsModalOpen(true);
@@ -57,23 +73,14 @@ function TeacherPage() {
   const handleClose = () => {
     setIsModalOpen(false);
   };
-
-  const courses = useQuery("teachersCourses", async () => {
-    return await axios.get("/teacher/courses");
-  });
-
-  const subjects = useQuery("subjects", async () => {
-    return await axios.get("/subjects");
-  }); 
-  
-
+   
   return (
     <>
       <Stack width="100%" mt={5} ml={6}>
         <Box>
-          <Typography fontSize="32px">Мои предметы</Typography>
+          <Typography fontSize="32px">Курсы по предмету {name}</Typography>
           <Stack mt={4} direction="row" gap={6} flexWrap="wrap">
-            {subjects.data?.data.map((s: Subject) => (
+            {courses.data?.data.filter((c: CourseType) => c.subject_id === id).map((c: CourseType) => (
             <Stack
               width="30%"
               height="30%"
@@ -95,14 +102,10 @@ function TeacherPage() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {s.name}
+                {c.title}
               </Typography>
               <Stack alignItems="end" mt={5}>
-                <Box     
-                  onClick={() => {  
-                    setSubject(s)                  
-                    navigate('/subjects/course')
-                  }}             
+                <Box             
                   sx={{
                     borderRadius: "20px",
                     cursor: "pointer",
@@ -113,7 +116,7 @@ function TeacherPage() {
                   display="flex"
                   alignItems="center"
                 >
-                  К ПРЕДМЕТУ
+                  К УРОКАМ
                   <ArrowForward sx={{ ml: "6px" }} />
                 </Box>
               </Stack>
@@ -122,7 +125,7 @@ function TeacherPage() {
           </Stack>
         </Box>
       </Stack>
-      {/* <Box
+      <Box
         sx={{
           position: "fixed",
           bottom: 0,
@@ -142,8 +145,8 @@ function TeacherPage() {
         onClick={handleOpen}
       >
         <Typography fontSize="36px">+</Typography>
-      </Box> */}
-      {/* <Modal
+      </Box> 
+     <Modal
         open={isModalOpen}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -151,20 +154,25 @@ function TeacherPage() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2" textAlign="center">
-            Добавить предмет
+            Добавить курс
           </Typography>
-          <form onSubmit={addSubject}>
+          <form onSubmit={addCourse} >
           <TextField
               margin="normal"
               required
               fullWidth
               id="course_name"
-              label="Название предмета..."
-              value={subName}
-              onChange={(e) => setSubName(e.target.value)}
+              value={courseName}
+              onChange={(e) => setCourseName(e.target.value)}
+              label="Название курса..."              
               autoFocus
             />      
-           
+           <InputEmoji
+            value={text}
+            onChange={setText}
+            cleanOnEnter            
+            placeholder="Выбирите иконку..."
+            />
             <Button
               type="submit"
               fullWidth
@@ -175,9 +183,11 @@ function TeacherPage() {
             </Button>      
           </form>
         </Box>
-      </Modal> */}
+      </Modal>
+      {/* @ts-ignore */}
+      <Toast open={open} setOpen={setOpen} msg={courseMut?.error?.response?.data?.message} variant='error' />
     </>
   );
 }
 
-export default withSidebar(TeacherPage);
+export default withSidebar(CoursesSubject);

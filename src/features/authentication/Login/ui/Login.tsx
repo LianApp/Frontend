@@ -99,6 +99,7 @@ export default function Login() {
             </Button>            
           </Box>
         </Box>
+        {/* @ts-ignore */}
         <Toast open={open} setOpen={setOpen} msg={mut?.error?.response?.data?.message} variant='error' />
       </Container>
   );

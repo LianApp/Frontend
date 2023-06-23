@@ -12,5 +12,6 @@ export default defineConfig({
       entities: '/src/entities',
       features: '/src/features'
     }
-  }
+  },
+  define: { global: 'window', },
 });
