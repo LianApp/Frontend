@@ -41,7 +41,7 @@ function App() {
           <Route path='/add-lesson/form' element={<AddLessonForm />}/>
           <Route path='/subjects/course' element={<CoursesSubject />}/>
         </Route>
-        <Route element={<ProtectedRoute allowedRoles={[Role.ORAGANIZATOR]} />}>
+        <Route element={<ProtectedRoute allowedRoles={[Role.ORGANIZATOR]} />}>
           <Route path="/dashboard" element={<Dashboard />} />          
         </Route>
         <Route path="/login" element={<Login />}/>

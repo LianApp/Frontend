@@ -104,7 +104,7 @@ function CoursesSubject() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {c.title}
+                {c.title} {c.icon}
               </Typography>
               <Stack alignItems="end" mt={5}>
                 <Box    

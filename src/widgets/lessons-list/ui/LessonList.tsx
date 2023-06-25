@@ -56,7 +56,7 @@ export function LessonList({ id, title, lessons, icon }: LessonListProps) {
         width="100%"
       >
         <Stack direction='row' alignItems='center'>
-          <Typography  data-testid="lesson-title" fontFamily='Montserrat'  fontSize={['24px', '34px']}>{title}</Typography>
+          <Typography  data-testid="lesson-title" fontFamily='Montserrat'  fontSize={['24px', '34px']}>{title} {icon}</Typography>
         </Stack>
         <Typography onClick={() => goToCourse(course)} fontSize='14px' sx={{cursor: 'pointer'}} color='#5D7CFB'>Смотреть все</Typography>
 

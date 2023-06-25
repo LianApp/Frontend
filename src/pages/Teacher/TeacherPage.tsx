@@ -212,7 +212,7 @@ function TeacherPage() {
                 mt={4}
               > 
               
-                <Typography fontSize='24px'>{course.title}</Typography> 
+                <Typography fontSize='24px'>{course.title} {course.icon}</Typography> 
                 <List> 
                   {course.lessons.map((l: Lesson) => (
                     <ListItem onClick={() => goToLesson(l)} sx={{fontSize: '12px', cursor: "pointer"}}>{l.title}</ListItem> 

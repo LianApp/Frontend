@@ -17,6 +17,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick"; 
 import useLesson from 'entities/lesson/api/useLesson';
+import LessonItemCard from 'entities/lesson/ui/LessonItemCard';
 
 const settings = {
   className: "slider variable-width",
@@ -70,7 +71,7 @@ function Main() {
                 mt={4}
               > 
               
-                <Typography fontSize='24px'>{course.title}</Typography> 
+                <Typography fontSize='24px'>{course.title} {course.icon}</Typography> 
                 <List> 
                   {course.lessons.map((l: Lesson) => (
                     <ListItem onClick={() => goToLesson(l)} sx={{fontSize: '12px', cursor: "pointer"}}>{l.title}</ListItem> 
@@ -81,35 +82,12 @@ function Main() {
             </Stack>
 
           <Stack direction="row" width="85%" alignItems="center" justifyContent="space-between" mt={8}>
-            <Typography fontSize='20px' color='#6B7280'>Последние курсы</Typography>  
-            
-            <Typography onClick={() => navigate('/lessons')} fontSize='14px' sx={{cursor: 'pointer'}} color='#5D7CFB'>Смотреть все</Typography>
-           
+            <Typography fontSize='20px' color='#6B7280'>Последние уроки</Typography>   
           </Stack>
                     
-          <Stack direction="row" width='100%' gap={2}>          
-          {courses.data?.data.map((course: CourseType) => (
-              <Box 
-                px={4} 
-                py={2} 
-                minWidth='29%'
-                minHeight='40%'                 
-                sx={{ 
-                  boxShadow: '0px 12px 32px -3px rgba(0, 0, 0, 0.1)', 
-                  borderRadius: '27px', 
-                }} 
-                mt={4}
-              > 
-              
-                <Typography fontSize='24px'>{course.title}</Typography> 
-                <List> 
-                  {course.lessons.map((l: Lesson) => (
-                    <ListItem onClick={() => goToLesson(l)} sx={{fontSize: '12px', cursor: "pointer"}}>{l.title}</ListItem> 
-                  ))}                      
-                </List> 
-              </Box> 
-            ))}
-            </Stack>
+          <Stack direction="row" width='100%' gap={6} mt={6} flexWrap='wrap'>          
+            {courses.data?.data.map((course: CourseType) => course.lessons.map((l: Lesson) => <LessonItemCard {...l} />))}
+          </Stack>
 
         </Stack> 
     </Box>  

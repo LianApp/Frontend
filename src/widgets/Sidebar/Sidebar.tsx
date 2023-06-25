@@ -11,6 +11,7 @@ import HomeIcon from './icons/Vector.svg';
 import LessonsIcon from './icons/lessons.svg';
 import LoginIcon from './icons/login.svg';
 import LogoutIcon from './icons/logout.svg';
+import { Role } from 'entities/user/model/user.model';
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -21,7 +22,21 @@ function Sidebar() {
 
   const roleNavigate = role === "STUDENT" ? "/lessons" : "/add-lesson"
   const lessonForRole = role === "STUDENT" ? "Уроки" : "Добавить урок"
-  const homeNavigate = role === "STUDENT" ? "/" : "/teacher"
+  const homeNavigate = () => {
+    switch (role) {
+      case "STUDENT":
+        navigate("/")
+        break;
+      case "ORGANIZATOR":
+        navigate("/dashboard");
+        break;
+      default:
+        navigate("/teacher");
+    }
+
+  }
+  console.log(homeNavigate);
+  
 
   const logout = () => {
     localStorage.clear()
@@ -69,7 +84,7 @@ function Sidebar() {
           >
             <IconButton 
               onClick={() => {
-                navigate(homeNavigate);
+                homeNavigate();
                 handleButtonClick('home');
               }}
               sx={{                
