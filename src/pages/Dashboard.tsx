@@ -9,6 +9,7 @@ import AddStudentForm from "./AddStudentForm";
 import StudentTable from "widgets/student-table/StudentTable";
 import { Tabs, Tab } from '@mui/material';
 import Subjects from "widgets/subjects/Subjects";
+import AddTeacherForm from "widgets/add-teacher/AddTeacher";
 
 function Dashboard() {
   const id = useAuth((state) => state.organization_id);
@@ -58,10 +59,12 @@ function Dashboard() {
         <Tab label="Добавить студентов" />
         <Tab label="Все студенты" />        
         <Tab label="Все предметы" />        
+        <Tab label="Добавить учителей" />        
       </Tabs>
       {value === 0 && <AddStudentForm />}
       {value === 1 && <StudentTable />}           
       {value === 2 && <Subjects />}           
+      {value === 3 && <AddTeacherForm />}           
     </Stack>
   );
 }

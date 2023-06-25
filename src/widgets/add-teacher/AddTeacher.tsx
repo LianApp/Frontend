@@ -22,38 +22,32 @@ import instance from 'shared/api/axiosConfig';
 import { Group } from 'shared/ui/GroupCard/GroupCard';
 import Toast from 'shared/ui/Toast/Toast';
 
-const AddStudentForm = () => {
-  const [students, setStudents] = useState([{ name: '', email: '', groupId: '' }]);
-  const [groups, setGroups] = useState([]);
+const AddTeacherForm = () => {
+  const [teachers, setTeachers] = useState([{ name: '', email: '' }]); 
   const [open, setOpen] = useState(false);
 
-  useQuery('groups', async () => {
-    const response = await instance.get('/groups');
-    setGroups(response.data);
-  });
-
-  const studentsMut = useMutation(
-    async (newStudents) => {
-      return await instance.post('/students', newStudents);      
+  const teachersMut = useMutation(
+    async (newTeachers) => {
+      return await instance.post('/teachers', newTeachers);      
     }
   );
 
-  const handleAddStudent = () => {
-    setStudents([...students, { name: '', email: '', groupId: '' }]);
+  const handleAddTeacher = () => {
+    setTeachers([...teachers, { name: '', email: '' }]);
   };
 
-  const handleRemoveStudent = (index: number) => {
-    const newStudents = [...students];
+  const handleRemoveTeachers = (index: number) => {
+    const newStudents = [...teachers];
     newStudents.splice(index, 1);
-    setStudents(newStudents);
+    setTeachers(newStudents);
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await studentsMut.mutateAsync({data: students} as never as void);        
-      console.log(students);         
-      setStudents([{ name: '', email: '', groupId: '' }]);
+      await teachersMut.mutateAsync({data: teachers} as never as void);        
+      console.log(teachers);         
+      setTeachers([{ name: '', email: '' }]);
     } catch (error) {
       setOpen(true)
     }
@@ -63,14 +57,14 @@ const AddStudentForm = () => {
     <Container maxWidth="lg" sx={{ mt: 4, maxHeight: '80%', overflow: 'scroll', overflowX: 'hidden' }}>
       
       <Typography variant="h4" align="center" gutterBottom>
-        Добавить студентов
+        Добавить учителей
       </Typography>
         <Stack direction='row' justifyContent='space-between'>
-            <Button sx={{ mt: 2 }} onClick={handleAddStudent}>
-                Добавить студента
+            <Button sx={{ mt: 2 }} onClick={handleAddTeacher}>
+                Добавить учителя
             </Button>
             <Button type="submit" variant="contained" sx={{ mt: 2 }} onClick={handleSubmit}>
-                Добавить студентов
+                Добавить учителей
             </Button>
       </Stack>
       
@@ -83,17 +77,17 @@ const AddStudentForm = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {students.map((student, index) => (
+            {teachers.map((teacher, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <TextField
                     required
                     fullWidth
-                    value={student.name}
+                    value={teacher.name}
                     onChange={(e) => {
-                      const newStudents = [...students];
+                      const newStudents = [...teachers];
                       newStudents[index].name = e.target.value;
-                      setStudents(newStudents);
+                      setTeachers(newStudents);
                     }}
                   />
                 </TableCell>
@@ -102,34 +96,16 @@ const AddStudentForm = () => {
                     required
                     fullWidth
                     type="email"
-                    value={student.email}
+                    value={teacher.email}
                     onChange={(e) => {
-                      const newStudents = [...students];
+                      const newStudents = [...teachers];
                       newStudents[index].email = e.target.value;
-                      setStudents(newStudents);
+                      setTeachers(newStudents);
                     }}
                   />
-                </TableCell>
-                <TableCell>
-                  <FormControl required fullWidth>                    
-                    <Select
-                      value={student.groupId}
-                      onChange={(e) => {
-                        const newStudents = [...students];
-                        newStudents[index].groupId = e.target.value;
-                        setStudents(newStudents);
-                      }}
-                    >
-                      {groups.map((group: Group) => (
-                        <MenuItem key={group.id} value={group.id}>
-                          {group.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </TableCell>
+                </TableCell>               
                 <TableCell align="center">
-                  <Button variant="outlined" onClick={() => handleRemoveStudent(index)}>
+                  <Button variant="outlined" onClick={() => handleRemoveTeachers(index)}>
                     Удалить
                   </Button>
                 </TableCell>
@@ -138,16 +114,14 @@ const AddStudentForm = () => {
           </TableBody>
         </Table>
       </TableContainer>    
-      {/* {studentsMut.isSuccess ? (
+      {teachersMut.isSuccess ? (
         <Toast open={open} setOpen={setOpen} msg='Устуденты успешно добавленны' variant='success' />
       ) : (
         // @ts-ignore
-        <Toast open={open} setOpen={setOpen} msg={studentsMut?.error?.response?.data?.message} variant='error' />
-      )}   */}
-      {/* @ts-ignore */}
-      <Toast open={open} setOpen={setOpen} msg={studentsMut?.error?.response?.data?.message} variant='error' />
+        <Toast open={open} setOpen={setOpen} msg={teachersMut?.error?.response?.data?.message} variant='error' />
+      )}      
     </Container>
   );
 };
 
-export default AddStudentForm;
+export default AddTeacherForm;
