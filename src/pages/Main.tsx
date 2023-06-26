@@ -45,7 +45,7 @@ function Main() {
   
   return (
     <Box mt={4} ml={5} width="100vw" height="100vh">
-      <Typography variant='h1' id="welcometext" fontFamily='Montserrat' fontSize="46px">Добро пожаловать, {userName.split(' ')[0]}!</Typography>
+      <Typography variant='h1' id="welcometext" fontFamily='Montserrat' fontSize="46px">Добро пожаловать, {userName}!</Typography>
       <Stack 
           mt={4}
           direction='column' 

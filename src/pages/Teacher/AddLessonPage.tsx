@@ -98,7 +98,8 @@ function TeacherPage() {
                 {s.name}
               </Typography>
               <Stack alignItems="end" mt={5}>
-                <Box     
+                <Box   
+                  data-testid="goToLesson"  
                   onClick={() => {  
                     setSubject(s)                  
                     navigate('/subjects/course')

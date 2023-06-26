@@ -94,7 +94,8 @@ function Sidebar() {
               <img src={HomeIcon}  />  
             </IconButton>
           </Box> 
-          <Box
+          {role === Role.ORGANIZATOR ? (<></>) : (
+            <Box
             sx={{
               borderRadius: '50%',
               border: isActive('lessons') ? '1px solid white' : '',
@@ -111,7 +112,8 @@ function Sidebar() {
             >
               <img src={LessonsIcon} /> 
             </IconButton>
-          </Box>             
+          </Box>   
+          )}          
         </Box> 
       </Box> 
       <Box 

@@ -51,7 +51,7 @@ function TeacherPage() {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Typography fontSize="20px" color="#6B7280">
+          <Typography fontSize="20px" color="#6B7280" data-testid="title-groups">
             Мои группы
           </Typography>
 
@@ -120,7 +120,7 @@ function TeacherPage() {
           justifyContent="space-between"
           mt={6}
         >
-          <Typography fontSize="20px" color="#6B7280">
+          <Typography fontSize="20px" color="#6B7280" data-testid="title-subjects">
             Мои предметы
           </Typography>
 

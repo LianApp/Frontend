@@ -26,7 +26,8 @@ const AddStudentForm = () => {
   const [students, setStudents] = useState([{ name: '', email: '', groupId: '' }]);
   const [groups, setGroups] = useState([]);
   const [open, setOpen] = useState(false);
-
+  console.log(students);
+  
   useQuery('groups', async () => {
     const response = await instance.get('/groups');
     setGroups(response.data);
@@ -47,7 +48,7 @@ const AddStudentForm = () => {
     newStudents.splice(index, 1);
     setStudents(newStudents);
   };
-
+  
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
