@@ -95,7 +95,7 @@ function Sidebar() {
             </IconButton>
           </Box> 
           {role === Role.ORGANIZATOR ? (<></>) : (
-            <Box
+            <Box            
             sx={{
               borderRadius: '50%',
               border: isActive('lessons') ? '1px solid white' : '',
@@ -124,7 +124,7 @@ function Sidebar() {
         mb={4} 
       > 
           <img src={LoginIcon} /> 
-          <IconButton onClick={logout}>
+          <IconButton data-cy="logout" onClick={logout}>
             <img src={LogoutIcon}/> 
           </IconButton> 
       </Box> 

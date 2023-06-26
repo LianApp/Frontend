@@ -71,6 +71,7 @@ function LessonsForCourse() {
         ))}
       </Stack>
       <Box
+        data-testid="add"
         sx={{
           position: "fixed",
           bottom: 0,
@@ -118,6 +119,7 @@ function LessonsForCourse() {
             />            
             <Stack width='100%' direction='row' justifyContent="space-between" gap={4} mt={2}>
                 <Button
+                    data-testid="title-add-document"
                     variant="contained"
                     component="label"
                     sx={{width: '50%'}}                    
@@ -132,6 +134,7 @@ function LessonsForCourse() {
                     />
                 </Button>
                 <Button
+                    data-testid="title-add-presentation"
                     variant="contained"
                     component="label"
                     sx={{width: '50%'}}
@@ -147,6 +150,7 @@ function LessonsForCourse() {
                 </Button>
             </Stack>            
             <Button
+              data-testid="menu-item_create_lesson"
               type="submit"
               fullWidth
               variant="contained"              

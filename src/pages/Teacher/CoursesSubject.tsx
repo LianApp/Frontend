@@ -108,6 +108,7 @@ function CoursesSubject() {
               </Typography>
               <Stack alignItems="end" mt={5}>
                 <Box    
+                  data-testid="btn"
                   onClick={() => {
                     setCourse(c)
                     navigate('/teacher/course/lessons')                                       
