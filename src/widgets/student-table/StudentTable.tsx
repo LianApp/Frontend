@@ -33,33 +33,49 @@ const StudentTable = () => {
     handleClose()
   }
 
-  const StudentRows = ({id}: {id: number}) => {
-    const students = useQuery("s", async () => {
-        return await instance.get(`/groups/${id}/students`);
+  const StudentRows = ({ groupId }: { groupId: number }) => {
+    const studentsQuery = useQuery(["students", groupId], async () => {
+      return await instance.get(`/groups/${groupId}/students`);
     });
-
+  
     useEffect(() => {
-        students.refetch()
-    }, [students])
-
-    return students.data?.data.map((student: any) => (
-      <TableRow key={student.id}>
-        <TableCell>{student.name}</TableCell>
-        <TableCell>{student.email}</TableCell>
-      </TableRow>
-    ));
+      studentsQuery.refetch()
+    }, [groupId])
+  
+    if (studentsQuery.isLoading) {
+      return <Typography>Загрузка...</Typography>
+    }
+  
+    if (studentsQuery.isError) {
+      return <Typography>Произошла ошибка при загрузке студентов.</Typography>
+    }
+  
+    const students = studentsQuery.data?.data.filter((s: any) => s.group_id === groupId);
+  
+    return (
+      <>
+        {students?.map((student: any) => (
+          <TableRow key={student.id}>
+            <TableCell>{student.name}</TableCell>
+            <TableCell>{student.email}</TableCell>
+          </TableRow>
+        ))}
+      </>
+    );
   };
+
+  useEffect(() => {
+    groups.refetch()
+  }, [])
 
   return (
     <Box>
       {groups.isLoading ? (
-        <Typography>Loading...</Typography>
+        <Typography>Загрузка...</Typography>
       ) : (
         groups.data?.data.map((group: Group) => (
           <Accordion key={group.id}>
-            <AccordionSummary  onClick={() => {
-                setGroupId(group.id)           
-            }}>
+            <AccordionSummary>
               <Typography>Группа {group.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -71,8 +87,8 @@ const StudentTable = () => {
                       <TableCell>Почта</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody>
-                    <StudentRows id={groupId} />
+                  <TableBody>                    
+                    <StudentRows groupId={group.id} />               
                   </TableBody>
                 </Table>
               </TableContainer>

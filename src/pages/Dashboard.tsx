@@ -17,7 +17,7 @@ function Dashboard() {
   const role = useAuth(state => state.role)
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event: any, newValue: any) => {
     setValue(newValue);
   };
   const [inputs, setInputs] = useState([{ name: "", email: "" }]);
