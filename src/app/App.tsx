@@ -17,6 +17,8 @@ import AddLessonForm from 'features/AddLessonForm/AddLessonForm';
 import LessonsCourse from 'pages/LessonsCourse';
 import CoursesSubject from 'pages/Teacher/CoursesSubject';
 import Dashboard from 'pages/Dashboard';
+import Groups from 'pages/Teacher/Groups';
+import Courses from 'pages/Teacher/Courses';
 
 function App() {
   const location = useLocation();
@@ -26,15 +28,17 @@ function App() {
         <Route element={<ProtectedRoute allowedRoles={[Role.STUDENT]} />}>
           <Route path="/" element={<Main />} />          
           <Route path="/lessons" element={<Lessons />} />
-          <Route path="/course" element={<LessonsCourse />} />
         </Route>
         <Route element={<ProtectedRoute allowedRoles={[Role.STUDENT, Role.TEACHER]}/> } >
+          <Route path="/course" element={<LessonsCourse />} />
           <Route path="/lessons/1/pres" element={<Presentation />} />
           <Route path="/lessons/1/lecture" element={<Lecture />} />
           <Route path="/lessons/1/test" element={<Test />} />
         </Route>
         <Route element={<ProtectedRoute allowedRoles={[Role.TEACHER]}/>}>
           <Route path='/teacher' element={<TeacherPage />} />
+          <Route path='/groups' element={<Groups />} />
+          <Route path='/teacher/courses' element={<Courses />} />
           <Route path='/teacher/course/lessons' element={<LessonsForCourse />}/>
           <Route path='/add-lesson' element={<AddLessonPage />}/>
           <Route path='/students/list' element={<StudentsList />}/>

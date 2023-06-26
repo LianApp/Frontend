@@ -14,7 +14,7 @@ import { Lesson } from "entities/lesson/model/lesson.model";
 import useAuth from "entities/user/api/lib/useAuth";
 import React from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import axios from "shared/api/axiosConfig";
 import useGroup from "shared/api/useGroup";
 import withSidebar from "shared/hoc/withSidebar";
@@ -59,6 +59,7 @@ function TeacherPage() {
             fontSize="14px"
             sx={{ cursor: "pointer" }}
             color="#5D7CFB"
+            onClick={() => navigate('/groups')}
           >
             Смотреть все
           </Typography>
@@ -193,7 +194,7 @@ function TeacherPage() {
             fontSize="14px"
             sx={{ cursor: "pointer" }}
             color="#5D7CFB"
-            onClick={() => navigate('/lessons')}
+            onClick={() => navigate('/teacher/courses')}
           >
             Смотреть все
           </Typography>
