@@ -19,7 +19,7 @@ import useAuth from "entities/user/api/lib/useAuth";
 import axios from "shared/api/axiosConfig";
 import { useQuery } from "react-query";
 import { CourseType } from "entities/course/model/course.model";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { Lesson } from "entities/lesson/model/lesson.model";
 import Slide from "shared/ui/Slider";
 import "slick-carousel/slick/slick.css";
